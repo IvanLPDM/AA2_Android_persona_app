@@ -64,21 +64,21 @@
         app:layout_constraintVertical_bias="0.727" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/RegisterButton"
         android:layout_width="141dp"
         android:layout_height="51dp"
         android:layout_marginTop="53dp"
         android:layout_marginEnd="20dp"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintEnd_toStartOf="@+id/loginButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/loginButton"
         android:layout_width="143dp"
         android:layout_height="53dp"
         android:layout_marginEnd="48dp"
