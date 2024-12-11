@@ -7,5 +7,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Para ver la variable de username
+        //val usernameEditText = findViewById<EditText>(R.id.usernameEditText)
     }
 }
