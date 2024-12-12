@@ -1,5 +1,6 @@
 package com.example.persona_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
@@ -19,6 +20,8 @@ class InitActivity : AppCompatActivity() {
         val hiddenImageZone: Button = findViewById(R.id.CloseZone)
         val sceneSelectorLayout: ConstraintLayout = findViewById(R.id.scene_selector_layout)
 
+        val newsButton: Button = findViewById(R.id.news_button)
+
         showImageButton.setOnClickListener {
             sceneSelectorLayout.visibility = View.VISIBLE
             hiddenImageButton.visibility = View.VISIBLE
@@ -36,5 +39,11 @@ class InitActivity : AppCompatActivity() {
             hiddenImageButton.visibility = View.INVISIBLE
             hiddenImageZone.visibility = View.INVISIBLE
         }
+
+        newsButton.setOnClickListener{
+                val intent = Intent(this, InitActivity::class.java)
+                startActivity(intent)
+            }
+
     }
 }
