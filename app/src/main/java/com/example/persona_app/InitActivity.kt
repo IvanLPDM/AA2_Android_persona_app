@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.os.Bundle
 import android.util.Log
+import androidx.constraintlayout.widget.ConstraintLayout
+
 
 class InitActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,21 +17,24 @@ class InitActivity : AppCompatActivity() {
         val showImageButton: Button = findViewById(R.id.menuOpen)
         val hiddenImageButton: Button = findViewById(R.id.menuClose)
         val hiddenImageZone: Button = findViewById(R.id.CloseZone)
-        val menuImage: ImageView = findViewById(R.id.Selector)
+        val sceneSelectorLayout: ConstraintLayout = findViewById(R.id.scene_selector_layout)
 
         showImageButton.setOnClickListener {
-            menuImage.visibility = View.VISIBLE
+            sceneSelectorLayout.visibility = View.VISIBLE
             hiddenImageButton.visibility = View.VISIBLE
+            hiddenImageZone.visibility = View.VISIBLE
         }
 
         hiddenImageButton.setOnClickListener {
-            menuImage.visibility = View.INVISIBLE
+            sceneSelectorLayout.visibility = View.INVISIBLE
             hiddenImageButton.visibility = View.INVISIBLE
+            hiddenImageZone.visibility = View.INVISIBLE
         }
 
         hiddenImageZone.setOnClickListener {
-            menuImage.visibility = View.INVISIBLE
+            sceneSelectorLayout.visibility = View.INVISIBLE
             hiddenImageButton.visibility = View.INVISIBLE
+            hiddenImageZone.visibility = View.INVISIBLE
         }
     }
 }
