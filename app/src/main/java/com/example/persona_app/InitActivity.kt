@@ -1,6 +1,8 @@
 package com.example.persona_app
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
@@ -54,13 +56,24 @@ class InitActivity : AppCompatActivity() {
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
+
+        //Setup
         setup(email?: "")
+
+        //Guardar datos
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.putString("email", email)
+        prefs.apply()
     }
+
+
 
     private fun setup(email:String)
     {
         val emailText: TextView = findViewById(R.id.emailTextView)
 
         emailText.text = email
+
+
     }
 }

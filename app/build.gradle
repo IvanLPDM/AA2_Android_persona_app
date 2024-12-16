@@ -44,7 +44,8 @@ dependencies {
 
     // Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics:22.1.0'
-    implementation 'com.google.firebase:firebase-auth:22.1.2' // Versión específica para Firebase Auth
+    implementation 'com.google.firebase:firebase-auth:22.1.2'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
 
     // Testing dependencies
     testImplementation 'junit:junit:4.13.2'

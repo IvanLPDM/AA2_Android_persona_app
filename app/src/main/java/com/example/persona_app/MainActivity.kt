@@ -7,6 +7,7 @@ import android.content.Intent
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import android.app.AlertDialog
+import android.content.Context
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +66,20 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        session()
+    }
+
+    private fun session()
+    {
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email: String? = prefs.getString("email", null)
+
+        if(email != null)
+        {
+            val intent = Intent(this, InitActivity::class.java)
+            startActivity(intent)
         }
     }
 

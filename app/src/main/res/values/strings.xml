@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Persona_app</string>
+    <string name="prefs_file">com.ivan.persona_app.preferences</string>
 </resources>
