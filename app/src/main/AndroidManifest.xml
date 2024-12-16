@@ -12,9 +12,11 @@
         android:theme="@style/Theme.Persona_app"
         tools:targetApi="31">
         <activity
-            android:name=".InitActivity"
+            android:name=".Profile"
             android:exported="false" />
-        <!-- SplashActivity como actividad principal -->
+        <activity
+            android:name=".InitActivity"
+            android:exported="false" /> <!-- SplashActivity como actividad principal -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">

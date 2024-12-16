@@ -22,6 +22,7 @@ class InitActivity : AppCompatActivity() {
         val sceneSelectorLayout: ConstraintLayout = findViewById(R.id.scene_selector_layout)
 
         val newsButton: Button = findViewById(R.id.news_button)
+        val profileButton: Button = findViewById(R.id.Profile_Button)
 
         showImageButton.setOnClickListener {
             sceneSelectorLayout.visibility = View.VISIBLE
@@ -45,6 +46,11 @@ class InitActivity : AppCompatActivity() {
                 val intent = Intent(this, InitActivity::class.java)
                 startActivity(intent)
             }
+
+        profileButton.setOnClickListener{
+            val intent = Intent(this, Profile::class.java)
+            startActivity(intent)
+        }
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
