@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
 
@@ -45,5 +46,15 @@ class InitActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+        val bundle = intent.extras
+        val email = bundle?.getString("email")
+        setup(email?: "")
+    }
+
+    private fun setup(email:String)
+    {
+        val emailText: TextView = findViewById(R.id.emailTextView)
+
+        emailText.text = email
     }
 }
