@@ -12,10 +12,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
-    private val GOOGLE_SIGN_IN = 1001
+    private val GOOGLE_SIGN_IN = 100
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -119,43 +120,32 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode:Int, data: Intent?)
-    {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == GOOGLE_SIGN_IN) {
-
+        if (requestCode == GOOGLE_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
                 val account = task.getResult(ApiException::class.java)
 
-                if(account != null) {
-
+                if (account != null) {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-
-                    FirebaseAuth.getInstance().signInWithCredential(credential)
-
-                    if(task.isSuccessful)
-                    {
-
-                        val intent = Intent(this, InitActivity::class.java).apply {
-                            putExtra("email", account.email)
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { authTask ->
+                        if (authTask.isSuccessful) {
+                            val intent = Intent(this, InitActivity::class.java).apply {
+                                putExtra("email", account.email)
+                            }
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            showAlert()
                         }
-                        startActivity(intent)
-                        finish()
                     }
-                    else
-                    {
-                        showAlert()
-                    }
-
                 }
-            }catch (e: ApiException)
-            {
+            } catch (e: ApiException) {
                 showAlert()
             }
-
         }
     }
 }

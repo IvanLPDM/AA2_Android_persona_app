@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Persona_app</string>
     <string name="prefs_file">com.ivan.persona_app.preferences</string>
-
+    <string name="default_web_client_id" translatable="false">367082968930-gsfre8kbdrdlel40njhcj7dr1v6itan1.apps.googleusercontent.com</string>
 </resources>
