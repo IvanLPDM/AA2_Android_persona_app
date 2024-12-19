@@ -24,9 +24,8 @@
         android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/mainscreenbox" />
 
     <EditText
@@ -87,5 +86,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
         app:layout_constraintVertical_bias="0.261" />
+
+    <Button
+        android:id="@+id/googleButton"
+        android:layout_width="268dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="108dp"
+        android:drawableStart="@mipmap/google"
+        android:text="Google"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

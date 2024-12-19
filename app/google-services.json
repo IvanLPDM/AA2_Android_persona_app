@@ -12,7 +12,20 @@
           "package_name": "com.example.persona_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "367082968930-kpfr2j4qulqupa2kemktq2valgqc20nf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.persona_app",
+            "certificate_hash": "35516af6ee61c164eafb64f2b95747e67cf503f7"
+          }
+        },
+        {
+          "client_id": "367082968930-gsfre8kbdrdlel40njhcj7dr1v6itan1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD044rIsOjs2YlUc0Tu4rvkCgf2awmV6l4"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367082968930-gsfre8kbdrdlel40njhcj7dr1v6itan1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
