@@ -40,43 +40,74 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/logOutButton"
         android:layout_width="169dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="64dp"
         android:text="Cerrar Sesión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="78dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="348dp"
-        android:text="Gmail:"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="4dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/logOutButton"
+        app:layout_constraintEnd_toEndOf="@+id/logOutButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/logOutButton" />
 
-    <TextView
-        android:id="@+id/Username"
-        android:layout_width="102dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginBottom="56dp"
-        android:text="Username"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+    <Button
+        android:id="@+id/GetButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:text="Get"
+        app:layout_constraintBottom_toTopOf="@+id/DeleteButton"
+        app:layout_constraintEnd_toEndOf="@+id/DeleteButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/DeleteButton" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/GetButton"
+        app:layout_constraintEnd_toEndOf="@+id/GetButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/GetButton" />
+
+    <EditText
+        android:id="@+id/usernameText"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="80dp"
+        android:hint="Username"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/PhoneText"
+        android:layout_width="272dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:hint="Phone"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+        app:layout_constraintEnd_toEndOf="@+id/usernameText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/usernameText"
+        app:layout_constraintTop_toBottomOf="@+id/usernameText"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/scene_selector_layout"
@@ -181,15 +212,5 @@
             app:layout_constraintTop_toBottomOf="@+id/Quests_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="197dp"
-        android:layout_height="25dp"
-        android:text="Example@gmail.com"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
