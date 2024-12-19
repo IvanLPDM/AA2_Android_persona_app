@@ -55,22 +55,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         loginButton.setOnClickListener {
-            if (username.text.isNotEmpty() && pasword.text.isNotEmpty())
-            {
+            if (username.text.isNotEmpty() && pasword.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(
                     username.text.toString(),
-                    pasword.text.toString()).addOnCompleteListener {
-
-                    if(it.isSuccessful)
-                    {
+                    pasword.text.toString()
+                ).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
                         val intent = Intent(this, InitActivity::class.java).apply {
                             putExtra("email", username.text.toString())
                         }
                         startActivity(intent)
                         finish()
-                    }
-                    else
-                    {
+                    } else {
+                        Log.e("LoginError", "Authentication failed: ${task.exception?.message}")
                         showAlert()
                     }
                 }
