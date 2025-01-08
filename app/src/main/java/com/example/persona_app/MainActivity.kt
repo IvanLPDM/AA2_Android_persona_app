@@ -13,10 +13,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import android.util.Log
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.example.persona_app.firebase.AnalyticsActivity
 
 class MainActivity : AppCompatActivity() {
 
     private val GOOGLE_SIGN_IN = 100
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         val registerButton: Button = findViewById(R.id.RegisterButton)
 
         val googleButton: Button = findViewById(R.id.googleButton)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
 
         registerButton.setOnClickListener {
@@ -43,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                             val intent = Intent(this, InitActivity::class.java).apply {
                                 putExtra("email", username.text.toString())
                             }
+                            logLoginEvent("email")
                             startActivity(intent)
                             finish()
                         }
@@ -64,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, InitActivity::class.java).apply {
                             putExtra("email", username.text.toString())
                         }
+                        logLoginEvent("email")
                         startActivity(intent)
                         finish()
                     } else {
@@ -85,15 +93,9 @@ class MainActivity : AppCompatActivity() {
             googleClient.signOut()
 
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
-
-
-
         }
-
         session()
     }
-
-
 
     private fun session()
     {
@@ -128,21 +130,29 @@ class MainActivity : AppCompatActivity() {
 
                 if (account != null) {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { authTask ->
-                        if (authTask.isSuccessful) {
-                            val intent = Intent(this, InitActivity::class.java).apply {
-                                putExtra("email", account.email)
+                    FirebaseAuth.getInstance().signInWithCredential(credential)
+                        .addOnCompleteListener { authTask ->
+                            if (authTask.isSuccessful) {
+                                val intent = Intent(this, InitActivity::class.java).apply {
+                                    putExtra("email", account.email)
+                                }
+                                logLoginEvent("google")
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                showAlert()
                             }
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            showAlert()
                         }
-                    }
                 }
             } catch (e: ApiException) {
                 showAlert()
             }
         }
+    }
+    // Registrar eventos en Analytics (firebase)
+    fun logLoginEvent(method: String) {
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.METHOD, method)
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
     }
 }
