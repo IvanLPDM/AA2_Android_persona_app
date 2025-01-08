@@ -5,11 +5,12 @@ import android.app.Application
 class FirebaseActivity {
     companion object {
 
-        lateinit var analytics: com.example.persona_app.firebase.AnalyticsActivity
-        val crashlytics = com.example.persona_app.firebase.CrashlyticsActivity()
+        lateinit var analytics: AnalyticsActivity
+        val crashlytics = CrashlyticsActivity()
+        val storage = StorageActivity()
 
         fun init(appContext: Application) {
-            analytics = com.example.persona_app.firebase.AnalyticsActivity(appContext)
+            analytics = AnalyticsActivity(appContext)
         }
     }
 }

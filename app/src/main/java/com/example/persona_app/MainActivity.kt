@@ -14,7 +14,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.example.persona_app.firebase.AnalyticsActivity
 
 class MainActivity : AppCompatActivity() {
 
