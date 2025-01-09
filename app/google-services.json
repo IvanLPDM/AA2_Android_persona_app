@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "367082968930-b3ilmsc7e75irqckupjfff9uc4uifnig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.persona_app",
+            "certificate_hash": "009c2f1c5a38219e6c6456de53ca2f2f94a3a4f8"
+          }
+        },
+        {
           "client_id": "367082968930-kpfr2j4qulqupa2kemktq2valgqc20nf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
