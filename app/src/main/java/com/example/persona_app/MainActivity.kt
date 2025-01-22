@@ -1,5 +1,8 @@
 package com.example.persona_app
 
+import NewsResponse
+import SteamApi
+import SteamApiService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,11 +18,17 @@ import com.google.firebase.auth.GoogleAuthProvider
 import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.example.persona_app.firebase.AnalyticsActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private val GOOGLE_SIGN_IN = 100
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+
+    val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +43,34 @@ class MainActivity : AppCompatActivity() {
 
         val googleButton: Button = findViewById(R.id.googleButton)
 
+
+
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
+        Log.d("SteamAPI", "Iniciando solicitud a la API de Steam")
+
+        //Prueba para ver si esta conectada la api
+
+
+        try {
+            steamApi.getNewsForApp("1687950", "DFDD5A1D4ABF350102931F27ECBA2F40").enqueue(object : Callback<NewsResponse> {
+                override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                    if (response.isSuccessful) {
+                        val newsItems = response.body()?.appnews?.newsitems
+                        newsItems?.forEach {
+                            Log.d("SteamAPI", "Title: ${it.title}, URL: ${it.url}")
+                        }
+                    } else {
+                        Log.e("SteamAPI", "Error: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                    Log.e("SteamAPI", "Failed: ${t.message}")
+                }
+            })} catch (e: Exception) {
+            Log.e("SteamAPI", "Unexpected error: ${e.localizedMessage}")
+        }
 
 
         registerButton.setOnClickListener {
@@ -95,6 +131,9 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
         }
         session()
+
+
+
     }
 
     private fun session()
