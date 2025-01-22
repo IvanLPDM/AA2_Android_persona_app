@@ -7,20 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".InitActivity">
 
-    <!-- Fondo fijo que no hace scroll -->
 
-    <!-- Contenido desplazable -->
 
     <ImageView
         android:id="@+id/Black"
         android:layout_width="785dp"
         android:layout_height="893dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/black" />
+        app:srcCompat="@mipmap/black"
+        tools:visibility="visible" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -29,8 +29,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        app:layout_constraintTop_toTopOf="parent">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,7 +39,7 @@
 
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/newsImageView"
                 android:layout_width="319dp"
                 android:layout_height="204dp"
                 android:layout_marginTop="100dp"
@@ -48,6 +49,29 @@
                 app:srcCompat="@mipmap/newsscreen_box" />
 
 
+            <Button
+                android:id="@+id/New"
+                android:layout_width="286dp"
+                android:layout_height="176dp"
+                android:layout_marginBottom="29dp"
+                android:text="Button"
+                app:layout_constraintBottom_toTopOf="@+id/imageView5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/TitleNew"
+                android:layout_width="236dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="90dp"
+                android:text="Title"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/imageView5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.548"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="326dp"
@@ -55,7 +79,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/newsImageView"
                 app:srcCompat="@mipmap/newsscreen_box" />
 
             <ImageView

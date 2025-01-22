@@ -45,5 +45,6 @@ data class AppNews(
 data class NewsItem(
     val title: String,
     val contents: String,
-    val url: String
+    val url: String,
+    val imageUrl: String
 )
