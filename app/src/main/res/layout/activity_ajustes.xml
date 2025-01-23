@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Ajustes">
 
+
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="529dp"
@@ -15,6 +17,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/settings" />
+
+    <Button
+        android:id="@+id/SteamButton"
+        android:layout_width="204dp"
+        android:layout_height="142dp"
+        android:text="Iniciar session Steam"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/closeZone"
@@ -159,6 +171,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                appAuthRedirectScheme: "com.example.persona_app"
+        ]
     }
 
     buildTypes {
@@ -74,7 +78,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     //Session steam
-
+    implementation 'net.openid:appauth:0.11.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
