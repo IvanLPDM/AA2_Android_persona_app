@@ -1,27 +1,24 @@
 package com.example.persona_app
 
+import NewsAdapter
+import NewsItem
 import NewsResponse
 import SteamApi
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlinx.coroutines.launch
-import com.bumptech.glide.Glide
-import kotlinx.coroutines.CoroutineScope
-
 
 
 class InitActivity : AppCompatActivity() {
@@ -29,7 +26,6 @@ class InitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
 
-        val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
 
 
         val showImageButton: Button = findViewById(R.id.menuOpen)
@@ -40,11 +36,17 @@ class InitActivity : AppCompatActivity() {
         val newsButton: Button = findViewById(R.id.news_button)
         val profileButton: Button = findViewById(R.id.Profile_Button)
 
-        //API too
-        val newsImageView: ImageView = findViewById(R.id.newsImageView)
-        val newTextView: TextView = findViewById(R.id.TitleNew)
-        val buttonNew: Button = findViewById(R.id.New)
-        var Url : String = ""
+        //API
+        val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
+
+        lateinit var newsRecyclerView: RecyclerView
+        lateinit var newsAdapter: NewsAdapter
+
+        newsRecyclerView = findViewById(R.id.newsRecyclerView)
+
+        // Configuración del RecyclerView
+        newsRecyclerView.layoutManager = LinearLayoutManager(this)
+
 
         //API NEWS
         try {//entramos en la api
@@ -54,12 +56,15 @@ class InitActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val newsItems = response.body()?.appnews?.newsitems
                         if (newsItems != null) {
-                            newsItems.forEach(){
-                            Log.d("SteamAPI_News", "Title: ${it.title}, " + "URL: ${it.url}, " + "URL Image: ${it.imageUrl}")
+                            //leemos todas las news que nos devuelve la api
+                            newsAdapter = NewsAdapter(this@InitActivity, newsItems) { url ->
 
-                                newTextView.setText(it.title)
-                                Url = it.url                            }
+                                // Abrimos la URL cuando se hace clic
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(intent)
+                            }
 
+                            newsRecyclerView.adapter = newsAdapter
 
                         }
                     } else {
@@ -74,16 +79,7 @@ class InitActivity : AppCompatActivity() {
             Log.e("SteamAPI_Err", "Unexpected error: ${e.localizedMessage}")
         }
 
-            buttonNew.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW)
-                if (Url.isNotEmpty()) {
-                    intent.data = Uri.parse(Url)
-                } else {
-                    intent.data = Uri.parse("https://default-url.com")
-                }
 
-                startActivity(intent)
-            }
 
         //UI
         showImageButton.setOnClickListener {
@@ -125,7 +121,6 @@ class InitActivity : AppCompatActivity() {
         prefs.putString("email", email)
         prefs.apply()
     }
-
 
 
 

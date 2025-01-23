@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".InitActivity">
 
-
-
+    <!-- Fondo negro (ya existente) -->
     <ImageView
         android:id="@+id/Black"
         android:layout_width="785dp"
@@ -22,100 +21,21 @@
         app:srcCompat="@mipmap/black"
         tools:visibility="visible" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- RecyclerView para las noticias -->
+
+    <!-- Otros elementos existentes -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newsRecyclerView"
+        android:layout_width="476dp"
+        android:layout_height="597dp"
+        android:layout_marginTop="76dp"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:id="@+id/newsImageView"
-                android:layout_width="319dp"
-                android:layout_height="204dp"
-                android:layout_marginTop="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-
-            <Button
-                android:id="@+id/New"
-                android:layout_width="286dp"
-                android:layout_height="176dp"
-                android:layout_marginBottom="29dp"
-                android:text="Button"
-                app:layout_constraintBottom_toTopOf="@+id/imageView5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/TitleNew"
-                android:layout_width="236dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="90dp"
-                android:text="Title"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/imageView5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.548"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="326dp"
-                android:layout_height="205dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newsImageView"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="325dp"
-                android:layout_height="174dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="325dp"
-                android:layout_height="174dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.534"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="322dp"
-                android:layout_height="191dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.534"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/news_item" />
 
     <ImageView
         android:id="@+id/black"
@@ -218,74 +138,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/Jokers_Armor_button"
+            android:id="@+id/Profile_Button"
             android:layout_width="147dp"
             android:layout_height="79dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="288dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.23"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/news_button" />
 
-        <Button
-            android:id="@+id/Calendar_button"
-            android:layout_width="148dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="20dp"
-            android:alpha="0"
-            android:text="Calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Jokers_Armor_button" />
-
-        <Button
-            android:id="@+id/Daily_Chores_button"
-            android:layout_width="183dp"
-            android:layout_height="63dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:alpha="0"
-            android:text="Daily_Chores"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Calendar_button" />
-
-        <Button
-            android:id="@+id/Profile_Button"
-            android:layout_width="184dp"
-            android:layout_height="91dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:alpha="0"
-            android:text="Confidant_Data"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Daily_Chores_button" />
-
-        <Button
-            android:id="@+id/Quests_button"
-            android:layout_width="142dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:alpha="0"
-            android:text="Quests"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
-
-        <Button
-            android:id="@+id/Community_button"
-            android:layout_width="180dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:alpha="0"
-            android:text="Community"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Quests_button" />
+        <!-- Más botones existentes aquí -->
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

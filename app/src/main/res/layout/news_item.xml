@@ -10,33 +10,39 @@
 
     <ImageView
         android:id="@+id/newsImage"
-        android:layout_width="398dp"
-        android:layout_height="216dp"
+        android:layout_width="385dp"
+        android:layout_height="215dp"
         android:layout_marginTop="4dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/newsscreen_box" />
 
     <TextView
         android:id="@+id/newsTitle"
         android:layout_width="370dp"
         android:layout_height="42dp"
-        android:layout_marginTop="20dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textColor="@android:color/black"
+        android:text="Titulo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/newsImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.853"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newsImage" />
+        app:layout_constraintTop_toTopOf="@+id/newsImage" />
 
     <Button
         android:id="@+id/openNewsButton"
-        android:layout_width="382dp"
-        android:layout_height="217dp"
+        android:layout_width="332dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="28dp"
+        android:alpha="0.2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="clcik" />

@@ -48,3 +48,4 @@ data class NewsItem(
     val url: String,
     val imageUrl: String
 )
+
