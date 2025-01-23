@@ -35,6 +35,7 @@ class InitActivity : AppCompatActivity() {
 
         val newsButton: Button = findViewById(R.id.news_button)
         val profileButton: Button = findViewById(R.id.Profile_Button)
+        val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
 
         //API
         val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
@@ -110,27 +111,12 @@ class InitActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        ajustesButton.setOnClickListener{
+            val intent = Intent(this, Ajustes::class.java)
+            startActivity(intent)
+        }
+
         val bundle = intent.extras
-        val email = bundle?.getString("email")
-
-        //Setup
-        setup(email?: "")
-
-        //Guardar datos
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs.putString("email", email)
-        prefs.apply()
-    }
-
-
-
-
-    private fun setup(email:String)
-    {
-        val emailText: TextView = findViewById(R.id.emailTextView)
-
-        emailText.text = email
-
 
     }
 }

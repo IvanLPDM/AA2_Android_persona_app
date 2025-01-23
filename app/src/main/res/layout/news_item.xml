@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/newsTitle"
-        android:layout_width="370dp"
-        android:layout_height="42dp"
+        android:layout_width="322dp"
+        android:layout_height="69dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="Titulo"
@@ -31,16 +31,17 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/newsImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newsImage" />
+        app:layout_constraintTop_toTopOf="@+id/newsImage"
+        app:layout_constraintVertical_bias="0.488" />
 
     <Button
         android:id="@+id/openNewsButton"
         android:layout_width="332dp"
         android:layout_height="171dp"
         android:layout_marginTop="28dp"
-        android:alpha="0.2"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.persona_app">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Persona_app"
         tools:targetApi="31">
+        <activity
+            android:name=".Ajustes"
+            android:exported="false" />
         <activity
             android:name=".Profile"
             android:exported="false" />
