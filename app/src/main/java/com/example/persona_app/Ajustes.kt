@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -12,20 +13,6 @@ class Ajustes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ajustes)
-
-
-        //val YOURRETURNURL = "personaapp-21038:/auth/handler"
-        val steamOpenIdUrl = "https://steamcommunity.com/openid/login" +
-                "?openid.ns=http://specs.openid.net/auth/2.0" +
-                "&openid.mode=checkid_setup" +
-                "&openid.return_to=YOURRETURNURL" +
-                "&openid.realm=YOUR_REALM_URL" +
-                "&openid.identity=http://specs.openid.net/auth/2.0/identifier_select" +
-                "&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select"
-
-
-
-
 
 
         val showImageButton: Button = findViewById(R.id.menuOpen2)
@@ -72,11 +59,67 @@ class Ajustes : AppCompatActivity() {
             startActivity(intent)
         }
 
-        steamButton.setOnClickListener{
-            // Abre el navegador o Custom Tabs
+        steamButton.setOnClickListener {
+
+            val YOURRETURNURL = "com.example.persona_app://auth/handler"
+            val YOUR_REALM_URL = "https://com.example.persona_app.firebaseapp.com"
+
+            val steamOpenIdUrl = "https://steamcommunity.com/openid/login" +
+                    "?openid.ns=http://specs.openid.net/auth/2.0" +
+                    "&openid.mode=checkid_setup" +
+                    "&openid.return_to=$YOURRETURNURL" +
+                    "&openid.realm=$YOUR_REALM_URL" +
+                    "&openid.identity=http://specs.openid.net/auth/2.0/identifier_select" +
+                    "&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select"
+
+            Log.d("SteamOpenID", "Generated URL: $steamOpenIdUrl")
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(steamOpenIdUrl))
             startActivity(intent)
         }
 
     }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val uri: Uri? = intent?.data
+
+        if (uri != null) {
+            Log.d("SteamOpenID", "Received URI: $uri")
+            if (uri.toString().startsWith("com.example.persona_app://auth/handler")) {
+                val parameters = uri.query
+                Log.d("SteamOpenID", "Query parameters: $parameters")
+                handleSteamResponse(parameters)
+            } else {
+                Log.e("SteamOpenID", "Unexpected URI: $uri")
+            }
+        } else {
+            Log.e("SteamOpenID", "No URI received")
+        }
+    }
+
+    private fun handleSteamResponse(parameters: String?) {
+        if (parameters != null) {
+            // Extraer el Steam ID de los parámetros devueltos
+            val steamIdRegex = Regex("openid.claimed_id=.*id/(\\d+)")
+            val match = steamIdRegex.find(parameters)
+            val steamId = match?.groupValues?.get(1)
+
+            if (steamId != null) {
+                Log.d("SteamID", "Steam ID obtenido: $steamId")
+                // Aquí puedes usar el Steam ID para obtener datos del usuario desde la API de Steam
+                fetchSteamUserData(steamId)
+            } else {
+                Log.e("SteamID", "No se pudo extraer el Steam ID")
+            }
+        }
+    }
+
+    private fun fetchSteamUserData(steamId: String) {
+        val apiKey = "TU_API_KEY" // Asegúrate de tener una API Key válida
+        val url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$apiKey&steamids=$steamId"
+
+        // Usa una biblioteca como Retrofit, OkHttp o cualquier cliente HTTP
+        Log.d("SteamAPI", "Fetching data from: $url")
+    }
+
 }
