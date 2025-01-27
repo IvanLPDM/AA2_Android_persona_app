@@ -59,9 +59,8 @@ class Ajustes : AppCompatActivity() {
             startActivity(intent)
         }
 
-        steamButton.setOnClickListener {
-
-            val YOURRETURNURL = "com.example.persona_app://auth/handler"
+        /*steamButton.setOnClickListener {
+            val YOURRETURNURL = "com.example.persona_app.com://auth/handler"
             val YOUR_REALM_URL = "https://com.example.persona_app.firebaseapp.com"
 
             val steamOpenIdUrl = "https://steamcommunity.com/openid/login" +
@@ -75,7 +74,7 @@ class Ajustes : AppCompatActivity() {
             Log.d("SteamOpenID", "Generated URL: $steamOpenIdUrl")
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(steamOpenIdUrl))
             startActivity(intent)
-        }
+        }*/
 
     }
 
@@ -99,26 +98,27 @@ class Ajustes : AppCompatActivity() {
 
     private fun handleSteamResponse(parameters: String?) {
         if (parameters != null) {
-            // Extraer el Steam ID de los parámetros devueltos
             val steamIdRegex = Regex("openid.claimed_id=.*id/(\\d+)")
             val match = steamIdRegex.find(parameters)
             val steamId = match?.groupValues?.get(1)
 
             if (steamId != null) {
                 Log.d("SteamID", "Steam ID obtenido: $steamId")
-                // Aquí puedes usar el Steam ID para obtener datos del usuario desde la API de Steam
                 fetchSteamUserData(steamId)
             } else {
                 Log.e("SteamID", "No se pudo extraer el Steam ID")
             }
+        } else {
+            Log.e("SteamResponse", "No se recibieron parámetros")
         }
+
     }
 
     private fun fetchSteamUserData(steamId: String) {
-        val apiKey = "TU_API_KEY" // Asegúrate de tener una API Key válida
+        val apiKey = "TU_API_KEY" // Tu clave de API de Steam
         val url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$apiKey&steamids=$steamId"
 
-        // Usa una biblioteca como Retrofit, OkHttp o cualquier cliente HTTP
+        // Usa una biblioteca HTTP como Retrofit o OkHttp
         Log.d("SteamAPI", "Fetching data from: $url")
     }
 

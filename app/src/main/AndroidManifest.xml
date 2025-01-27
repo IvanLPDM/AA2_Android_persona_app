@@ -16,17 +16,15 @@
 
         <activity
             android:name=".Ajustes"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
+                    android:scheme="com.example.persona_app"
                     android:host="auth"
-                    android:path="/handler"
-                    android:scheme="com.example.persona_app" />
+                    android:path="/handler" />
             </intent-filter>
         </activity>
         <activity
