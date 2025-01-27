@@ -1,125 +1,135 @@
 package com.example.persona_app
 
-import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class Ajustes : AppCompatActivity() {
+
+    private val steamApiKey = "DFDD5A1D4ABF350102931F27ECBA2F40"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ajustes)
 
+        val steamIdInput: EditText = findViewById(R.id.steam_id_input)
+        val fetchProfileButton: Button = findViewById(R.id.fetch_profile_button)
+        val avatarImageView: ImageView = findViewById(R.id.avatar_image_view)
 
-        val showImageButton: Button = findViewById(R.id.menuOpen2)
-        val hiddenImageButton: Button = findViewById(R.id.menuClose2)
-        val hiddenImageZone: Button = findViewById(R.id.closeZone)
-        val sceneSelectorLayout: ConstraintLayout = findViewById(R.id.scene_selector_layout)
+        fetchProfileButton.setOnClickListener {
+            val input = steamIdInput.text.toString()
 
-        val newsButton: Button = findViewById(R.id.news_button)
-        val profileButton: Button = findViewById(R.id.Profile_Button)
-        val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
-        val steamButton: Button = findViewById(R.id.SteamButton)
-
-        //UI
-        showImageButton.setOnClickListener {
-            sceneSelectorLayout.visibility = View.VISIBLE
-            hiddenImageButton.visibility = View.VISIBLE
-            hiddenImageZone.visibility = View.VISIBLE
-        }
-
-        hiddenImageButton.setOnClickListener {
-            sceneSelectorLayout.visibility = View.INVISIBLE
-            hiddenImageButton.visibility = View.INVISIBLE
-            hiddenImageZone.visibility = View.INVISIBLE
-        }
-
-        hiddenImageZone.setOnClickListener {
-            sceneSelectorLayout.visibility = View.INVISIBLE
-            hiddenImageButton.visibility = View.INVISIBLE
-            hiddenImageZone.visibility = View.INVISIBLE
-        }
-
-        newsButton.setOnClickListener{
-            val intent = Intent(this, InitActivity::class.java)
-            startActivity(intent)
-        }
-
-        profileButton.setOnClickListener{
-            val intent = Intent(this, Profile::class.java)
-            startActivity(intent)
-        }
-
-        ajustesButton.setOnClickListener{
-            val intent = Intent(this, Ajustes::class.java)
-            startActivity(intent)
-        }
-
-        /*steamButton.setOnClickListener {
-            val YOURRETURNURL = "com.example.persona_app.com://auth/handler"
-            val YOUR_REALM_URL = "https://com.example.persona_app.firebaseapp.com"
-
-            val steamOpenIdUrl = "https://steamcommunity.com/openid/login" +
-                    "?openid.ns=http://specs.openid.net/auth/2.0" +
-                    "&openid.mode=checkid_setup" +
-                    "&openid.return_to=$YOURRETURNURL" +
-                    "&openid.realm=$YOUR_REALM_URL" +
-                    "&openid.identity=http://specs.openid.net/auth/2.0/identifier_select" +
-                    "&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select"
-
-            Log.d("SteamOpenID", "Generated URL: $steamOpenIdUrl")
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(steamOpenIdUrl))
-            startActivity(intent)
-        }*/
-
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        val uri: Uri? = intent?.data
-
-        if (uri != null) {
-            Log.d("SteamOpenID", "Received URI: $uri")
-            if (uri.toString().startsWith("com.example.persona_app://auth/handler")) {
-                val parameters = uri.query
-                Log.d("SteamOpenID", "Query parameters: $parameters")
-                handleSteamResponse(parameters)
+            if (input.isNotEmpty()) {
+                // Intentar convertir Vanity URL a SteamID64
+                resolveVanityURL(input) { steamId ->
+                    if (steamId != null) {
+                        fetchSteamProfile(steamId) { avatarUrl, personaName ->
+                            runOnUiThread {
+                                if (avatarUrl != null) {
+                                    // Mostrar avatar y nombre
+                                    Glide.with(this).load(avatarUrl).into(avatarImageView)
+                                    Toast.makeText(this, "Bienvenido, $personaName!", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(this, "No se encontró el perfil.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    } else {
+                        runOnUiThread {
+                            Toast.makeText(this, "ID no válido o perfil no encontrado.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             } else {
-                Log.e("SteamOpenID", "Unexpected URI: $uri")
+                Toast.makeText(this, "Por favor, introduce un Steam ID o Vanity URL.", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Log.e("SteamOpenID", "No URI received")
         }
     }
 
-    private fun handleSteamResponse(parameters: String?) {
-        if (parameters != null) {
-            val steamIdRegex = Regex("openid.claimed_id=.*id/(\\d+)")
-            val match = steamIdRegex.find(parameters)
-            val steamId = match?.groupValues?.get(1)
+    private fun resolveVanityURL(vanityUrl: String, callback: (String?) -> Unit) {
+        val client = OkHttpClient()
+        val url = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/" +
+                "?key=$steamApiKey&vanityurl=$vanityUrl"
 
-            if (steamId != null) {
-                Log.d("SteamID", "Steam ID obtenido: $steamId")
-                fetchSteamUserData(steamId)
-            } else {
-                Log.e("SteamID", "No se pudo extraer el Steam ID")
+        val request = Request.Builder().url(url).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("SteamAPI", "Error al resolver Vanity URL: ${e.message}")
+                callback(null)
             }
-        } else {
-            Log.e("SteamResponse", "No se recibieron parámetros")
-        }
 
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    if (!response.isSuccessful) {
+                        Log.e("SteamAPI", "Respuesta fallida: ${response.message}")
+                        callback(null)
+                        return
+                    }
+
+                    val jsonResponse = response.body?.string()
+                    if (jsonResponse != null) {
+                        try {
+                            val jsonObject = JSONObject(jsonResponse)
+                            val responseObj = jsonObject.getJSONObject("response")
+                            val steamId = responseObj.optString("steamid", null)
+                            callback(steamId)
+                        } catch (e: Exception) {
+                            Log.e("SteamAPI", "Error al procesar JSON: ${e.message}")
+                            callback(null)
+                        }
+                    }
+                }
+            }
+        })
     }
 
-    private fun fetchSteamUserData(steamId: String) {
-        val apiKey = "TU_API_KEY" // Tu clave de API de Steam
-        val url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$apiKey&steamids=$steamId"
+    private fun fetchSteamProfile(steamId: String, callback: (String?, String?) -> Unit) {
+        val client = OkHttpClient()
+        val url = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/" +
+                "?key=$steamApiKey&steamids=$steamId"
 
-        // Usa una biblioteca HTTP como Retrofit o OkHttp
-        Log.d("SteamAPI", "Fetching data from: $url")
+        val request = Request.Builder().url(url).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("SteamAPI", "Error al obtener perfil: ${e.message}")
+                callback(null, null)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    if (!response.isSuccessful) {
+                        Log.e("SteamAPI", "Respuesta fallida: ${response.message}")
+                        callback(null, null)
+                        return
+                    }
+
+                    val jsonResponse = response.body?.string()
+                    if (jsonResponse != null) {
+                        try {
+                            val jsonObject = JSONObject(jsonResponse)
+                            val players = jsonObject.getJSONObject("response").getJSONArray("players")
+                            if (players.length() > 0) {
+                                val player = players.getJSONObject(0)
+                                val avatarUrl = player.getString("avatarfull")
+                                val personaName = player.getString("personaname")
+                                callback(avatarUrl, personaName)
+                            } else {
+                                callback(null, null)
+                            }
+                        } catch (e: Exception) {
+                            Log.e("SteamAPI", "Error al procesar JSON: ${e.message}")
+                            callback(null, null)
+                        }
+                    }
+                }
+            }
+        })
     }
-
 }

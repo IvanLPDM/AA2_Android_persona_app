@@ -1,179 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ajustes">
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <EditText
+        android:id="@+id/steam_id_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce tu Steam ID"
+        android:inputType="text"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp" />
 
+    <Button
+        android:id="@+id/fetch_profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Obtener perfil"
+        android:layout_marginBottom="16dp"/>
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="529dp"
-        android:layout_height="798dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/settings" />
+        android:id="@+id/avatar_image_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"/>
 
-    <Button
-        android:id="@+id/SteamButton"
-        android:layout_width="204dp"
-        android:layout_height="142dp"
-        android:text="Iniciar session Steam"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/closeZone"
-        android:layout_width="195dp"
-        android:layout_height="784dp"
-        android:alpha="0"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/menuOpen2"
-        android:layout_width="91dp"
-        android:layout_height="78dp"
-        android:alpha="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/menuClose2"
-        android:layout_width="105dp"
-        android:layout_height="88dp"
-        android:alpha="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/scene_selector_layout"
-        android:layout_width="331dp"
-        android:layout_height="873dp"
-        android:layout_marginStart="-20dp"
-        android:layout_marginTop="-20dp"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
-
-        <ImageView
-            android:id="@+id/Selector"
-            android:layout_width="323dp"
-            android:layout_height="797dp"
-            android:layout_marginStart="-30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/selector" />
-
-        <Button
-            android:id="@+id/news_button"
-            android:layout_width="167dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="96dp"
-            android:alpha="0"
-            android:text="News"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/Jokers_Armor_button"
-            android:layout_width="147dp"
-            android:layout_height="79dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="53dp"
-            android:alpha="0"
-            android:text="Jokers_Armor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.23"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/news_button" />
-
-        <Button
-            android:id="@+id/Calendar_button"
-            android:layout_width="148dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="20dp"
-            android:alpha="0"
-            android:text="Calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Jokers_Armor_button" />
-
-        <Button
-            android:id="@+id/Daily_Chores_button"
-            android:layout_width="183dp"
-            android:layout_height="63dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:alpha="0"
-            android:text="Daily_Chores"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Calendar_button" />
-
-        <Button
-            android:id="@+id/Profile_Button"
-            android:layout_width="184dp"
-            android:layout_height="91dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:alpha="0"
-            android:text="Confidant_Data"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Daily_Chores_button" />
-
-        <Button
-            android:id="@+id/Quests_button"
-            android:layout_width="142dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:alpha="0"
-            android:text="Quests"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
-
-        <Button
-            android:id="@+id/Community_button"
-            android:layout_width="180dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:alpha="0"
-            android:text="Community"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Quests_button" />
-
-        <Button
-            android:id="@+id/ajustes_Buton"
-            android:layout_width="147dp"
-            android:layout_height="79dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="53dp"
-            android:alpha="0"
-            android:text="Jokers_Armor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.139"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
