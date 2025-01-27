@@ -25,7 +25,7 @@ class Ajustes : AppCompatActivity() {
             val input = steamIdInput.text.toString()
 
             if (input.isNotEmpty()) {
-                // Intentar convertir Vanity URL a SteamID64
+                //convertir Vanity URL a SteamID64
                 resolveVanityURL(input) { steamId ->
                     if (steamId != null) {
                         fetchSteamProfile(steamId) { avatarUrl, personaName ->
@@ -51,6 +51,7 @@ class Ajustes : AppCompatActivity() {
         }
     }
 
+    //CHAT GPT
     private fun resolveVanityURL(vanityUrl: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
         val url = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/" +

@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Verificar si el usuario ya está autenticado
+        session()
+
         //Para ver la variable de username
         val username = findViewById<EditText>(R.id.usernameEditText)
         val pasword = findViewById<EditText>(R.id.passwordEditText)
@@ -113,15 +116,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun session()
-    {
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email: String? = prefs.getString("email", null)
+    private fun session() {
+        // Verificar si el usuario está autenticado con Firebase Auth
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
 
-        if(email != null)
-        {
             val intent = Intent(this, InitActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
