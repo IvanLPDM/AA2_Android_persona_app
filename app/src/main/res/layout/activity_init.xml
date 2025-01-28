@@ -105,7 +105,7 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/Selector"
@@ -128,11 +128,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/Profile_Button"
-            android:layout_width="147dp"
-            android:layout_height="79dp"
+            android:id="@+id/BibliotecaButton"
+            android:layout_width="182dp"
+            android:layout_height="84dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="288dp"
+            android:layout_marginTop="192dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
@@ -140,6 +140,20 @@
             app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/news_button" />
+
+        <Button
+            android:id="@+id/Profile_Button"
+            android:layout_width="147dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="53dp"
+            android:alpha="0"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BibliotecaButton" />
 
         <Button
             android:id="@+id/ajustes_Buton"

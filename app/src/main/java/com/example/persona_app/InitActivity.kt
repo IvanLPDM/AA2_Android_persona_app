@@ -4,7 +4,6 @@ import NewsAdapter
 import NewsItem
 import NewsResponse
 import SteamApi
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -12,10 +11,12 @@ import android.view.View
 import android.widget.Button
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +37,29 @@ class InitActivity : AppCompatActivity() {
         val newsButton: Button = findViewById(R.id.news_button)
         val profileButton: Button = findViewById(R.id.Profile_Button)
         val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
+        val bibliotecaButton: Button = findViewById(R.id.BibliotecaButton)
+
+        //Base de datos para identificar si has iniciado session en Steam
+        val db = FirebaseFirestore.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            val email = user.email.toString()
+            db.collection("Users").document(email).get().addOnSuccessListener { document ->
+                if (document.exists()) {
+
+                    val steamId = document.getString("SteamID")
+                    if (!steamId.isNullOrEmpty()) {
+
+                        Toast.makeText(this, "Bienvenido, $steamId!", Toast.LENGTH_SHORT)
+                            .show()
+
+                    } else
+                        Toast.makeText(this, "Inicia session en Steam desde Profile.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
         //API
         val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
@@ -82,6 +106,7 @@ class InitActivity : AppCompatActivity() {
 
 
 
+
         //UI
         showImageButton.setOnClickListener {
             sceneSelectorLayout.visibility = View.VISIBLE
@@ -113,6 +138,11 @@ class InitActivity : AppCompatActivity() {
 
         ajustesButton.setOnClickListener{
             val intent = Intent(this, Ajustes::class.java)
+            startActivity(intent)
+        }
+
+        bibliotecaButton.setOnClickListener{
+            val intent = Intent(this, Biblioteca::class.java)
             startActivity(intent)
         }
 

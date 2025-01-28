@@ -57,6 +57,39 @@ class Profile : AppCompatActivity() {
             val email = user?.email.toString()
             val provider = user?.providerId
 
+        if (user != null) {
+            db.collection("Users").document(email).get().addOnSuccessListener { document ->
+                // Obtener datos desde Firestore
+                val username = document.getString("SteamID")
+                val phone = document.getString("phone")
+                val steamId = username // Usaremos el "username" como Steam ID o Vanity URL
+
+                // Mostrar datos en los campos de texto
+                usernameText.setText(username)
+                phoneText.setText(phone)
+
+                // Cargar avatar y nombre desde Steam
+                if (!steamId.isNullOrEmpty()) {
+                    resolveVanityURL(steamId) { resolvedSteamId ->
+                        if (resolvedSteamId != null) {
+                            fetchSteamProfile(resolvedSteamId) { avatarUrl, personaName ->
+                                runOnUiThread {
+                                    if (avatarUrl != null) {
+                                        // Mostrar avatar en el ImageView
+                                        Glide.with(this).load(avatarUrl).into(avatarImageView)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Error al cargar datos del usuario.", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this, "Usuario no autenticado.", Toast.LENGTH_SHORT).show()
+        }
+
             showImageButton.setOnClickListener {
                 sceneSelectorLayout.visibility = View.VISIBLE
                 hiddenImageButton.visibility = View.VISIBLE
@@ -104,11 +137,7 @@ class Profile : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener{
-            db.collection("Users").document(email).set(
-                hashMapOf("provider" to provider,
-                "username" to usernameText.text.toString(),
-                "phone" to phoneText.text.toString())
-            )
+
             Log.d("email: ", email + " SteamID: " + usernameText.text.toString() + " Phonre: " + phoneText.text.toString())
 
             //STEAM
@@ -121,7 +150,12 @@ class Profile : AppCompatActivity() {
                         fetchSteamProfile(steamId) { avatarUrl, personaName ->
                             runOnUiThread {
                                 if (avatarUrl != null) {
-                                    // Mostrar avatar y nombre
+                                    // Mostrar avatar y guardamos nombre y telefono
+                                    db.collection("Users").document(email).set(
+                                        hashMapOf("provider" to provider,
+                                            "SteamID" to usernameText.text.toString(),
+                                            "phone" to phoneText.text.toString())
+                                    )
                                     Glide.with(this).load(avatarUrl).into(avatarImageView)
                                     Toast.makeText(this, "Bienvenido, $personaName!", Toast.LENGTH_SHORT).show()
                                 } else {
@@ -142,16 +176,16 @@ class Profile : AppCompatActivity() {
 
         getButton.setOnClickListener{
             db.collection("Users").document(email).get().addOnSuccessListener {
-                usernameText.setText(it.get("username") as String?)
+                usernameText.setText(it.get("SteamID") as String?)
                 phoneText.setText(it.get("phone") as String?)
             }
         }
 
         deleteButton.setOnClickListener{
             db.collection("Users").document(email).delete().addOnSuccessListener {
-                usernameText.setText(" ")
-                phoneText.setText(" ")
-                usernameText.setText(" ")
+                usernameText.setText("")
+                phoneText.setText("")
+                usernameText.setText("")
             }
         }
     }
