@@ -47,9 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
-        //Prueba para ver si esta conectada la api
-
-
 
 
 
