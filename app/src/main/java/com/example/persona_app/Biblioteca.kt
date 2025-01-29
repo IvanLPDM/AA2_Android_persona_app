@@ -14,13 +14,13 @@ import java.io.IOException
 
 class Biblioteca : AppCompatActivity() {
 
-    private val steamApiKey = "DFDD5A1D4ABF350102931F27ECBA2F40" // Tu Steam API Key
+    private val steamApiKey = "DFDD5A1D4ABF350102931F27ECBA2F40"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_biblioteca)
 
-        val checkGamesButton: Button = findViewById(R.id.checkGamesButton)  // Cambio el nombre del botón
+        val checkGamesButton: Button = findViewById(R.id.checkGamesButton)
         val gameNameInput: EditText = findViewById(R.id.gameNameInput)
 
         // Configurar Firebase Firestore y obtener el usuario actual
@@ -58,7 +58,6 @@ class Biblioteca : AppCompatActivity() {
     private fun getGamesForUser(steamId: String) {
         val client = OkHttpClient()
 
-        // URL para obtener los juegos del usuario
         val url = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=$steamApiKey&steamid=$steamId&format=json"
 
         val request = Request.Builder().url(url).build()
