@@ -1,5 +1,8 @@
 package com.example.persona_app
 
+import NewsResponse
+import SteamApi
+import SteamApiService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,14 +19,20 @@ import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.example.persona_app.firebase.AnalyticsActivity
 
+
 class MainActivity : AppCompatActivity() {
 
     private val GOOGLE_SIGN_IN = 100
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Verificar si el usuario ya está autenticado
+        session()
 
         //Para ver la variable de username
         val username = findViewById<EditText>(R.id.usernameEditText)
@@ -34,7 +43,14 @@ class MainActivity : AppCompatActivity() {
 
         val googleButton: Button = findViewById(R.id.googleButton)
 
+
+
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
+        //Prueba para ver si esta conectada la api
+
+
+
 
 
         registerButton.setOnClickListener {
@@ -95,17 +111,19 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
         }
         session()
+
+
+
     }
 
-    private fun session()
-    {
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email: String? = prefs.getString("email", null)
+    private fun session() {
+        // Verificar si el usuario está autenticado con Firebase Auth
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
 
-        if(email != null)
-        {
             val intent = Intent(this, InitActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

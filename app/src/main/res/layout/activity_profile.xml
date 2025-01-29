@@ -16,6 +16,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/profile" />
 
+    <ImageView
+        android:id="@+id/ImageProfile"
+        android:layout_width="121dp"
+        android:layout_height="122dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <Button
         android:id="@+id/menuOpen"
         android:layout_width="91dp"
@@ -89,7 +101,7 @@
         android:layout_width="273dp"
         android:layout_height="48dp"
         android:layout_marginBottom="80dp"
-        android:hint="Username"
+        android:hint="SteamID"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/SaveButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -210,6 +222,20 @@
             android:text="Community"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Quests_button" />
+
+        <Button
+            android:id="@+id/ajustes_Buton2"
+            android:layout_width="147dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="53dp"
+            android:alpha="0"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

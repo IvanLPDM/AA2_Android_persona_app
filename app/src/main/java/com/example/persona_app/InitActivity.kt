@@ -1,22 +1,33 @@
 package com.example.persona_app
 
-import android.content.Context
+import NewsAdapter
+import NewsItem
+import NewsResponse
+import SteamApi
 import android.content.Intent
-import android.content.SharedPreferences
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class InitActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
+
+
 
         val showImageButton: Button = findViewById(R.id.menuOpen)
         val hiddenImageButton: Button = findViewById(R.id.menuClose)
@@ -25,7 +36,78 @@ class InitActivity : AppCompatActivity() {
 
         val newsButton: Button = findViewById(R.id.news_button)
         val profileButton: Button = findViewById(R.id.Profile_Button)
+        val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
+        val bibliotecaButton: Button = findViewById(R.id.BibliotecaButton)
 
+        //Base de datos para identificar si has iniciado session en Steam
+        val db = FirebaseFirestore.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            val email = user.email.toString()
+            db.collection("Users").document(email).get().addOnSuccessListener { document ->
+                if (document.exists()) {
+
+                    val steamId = document.getString("SteamID")
+                    if (!steamId.isNullOrEmpty()) {
+
+                        Toast.makeText(this, "Bienvenido, $steamId!", Toast.LENGTH_SHORT)
+                            .show()
+
+                    } else
+                        Toast.makeText(this, "Inicia session en Steam desde Profile.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+        //API
+        val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
+
+        lateinit var newsRecyclerView: RecyclerView
+        lateinit var newsAdapter: NewsAdapter
+
+        newsRecyclerView = findViewById(R.id.newsRecyclerView)
+
+        // Configuración del RecyclerView
+        newsRecyclerView.layoutManager = LinearLayoutManager(this)
+
+
+        //API NEWS
+        try {//entramos en la api
+            steamApi.getNewsForApp("1687950", "DFDD5A1D4ABF350102931F27ECBA2F40").enqueue(object :
+                Callback<NewsResponse> {
+                override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                    if (response.isSuccessful) {
+                        val newsItems = response.body()?.appnews?.newsitems
+                        if (newsItems != null) {
+                            //leemos todas las news que nos devuelve la api
+                            newsAdapter = NewsAdapter(this@InitActivity, newsItems) { url ->
+
+                                // Abrimos la URL cuando se hace clic
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(intent)
+                            }
+
+                            newsRecyclerView.adapter = newsAdapter
+
+                        }
+                    } else {
+                        Log.e("SteamAPI_Err", "Error: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                    Log.e("SteamAPI_Err", "Failed: ${t.message}")
+                }
+            })} catch (e: Exception) {
+            Log.e("SteamAPI_Err", "Unexpected error: ${e.localizedMessage}")
+        }
+
+
+
+
+        //UI
         showImageButton.setOnClickListener {
             sceneSelectorLayout.visibility = View.VISIBLE
             hiddenImageButton.visibility = View.VISIBLE
@@ -54,26 +136,17 @@ class InitActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        ajustesButton.setOnClickListener{
+            val intent = Intent(this, Ajustes::class.java)
+            startActivity(intent)
+        }
+
+        bibliotecaButton.setOnClickListener{
+            val intent = Intent(this, Biblioteca::class.java)
+            startActivity(intent)
+        }
+
         val bundle = intent.extras
-        val email = bundle?.getString("email")
-
-        //Setup
-        setup(email?: "")
-
-        //Guardar datos
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs.putString("email", email)
-        prefs.apply()
-    }
-
-
-
-    private fun setup(email:String)
-    {
-        val emailText: TextView = findViewById(R.id.emailTextView)
-
-        emailText.text = email
-
 
     }
 }

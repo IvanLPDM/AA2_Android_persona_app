@@ -7,90 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".InitActivity">
 
-    <!-- Fondo fijo que no hace scroll -->
-
-    <!-- Contenido desplazable -->
-
+    <!-- Fondo negro (ya existente) -->
     <ImageView
         android:id="@+id/Black"
         android:layout_width="785dp"
         android:layout_height="893dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/black" />
+        app:srcCompat="@mipmap/black"
+        tools:visibility="visible" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- RecyclerView para las noticias -->
+
+    <!-- Otros elementos existentes -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newsRecyclerView"
+        android:layout_width="476dp"
+        android:layout_height="597dp"
+        android:layout_marginTop="76dp"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="319dp"
-                android:layout_height="204dp"
-                android:layout_marginTop="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="326dp"
-                android:layout_height="205dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="325dp"
-                android:layout_height="174dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="325dp"
-                android:layout_height="174dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.534"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="322dp"
-                android:layout_height="191dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.534"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8"
-                app:srcCompat="@mipmap/newsscreen_box" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/news_item" />
 
     <ImageView
         android:id="@+id/black"
@@ -101,16 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/black" />
-
-    <TextView
-        android:id="@+id/emailTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -169,7 +104,8 @@
         android:padding="16dp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/Selector"
@@ -192,74 +128,48 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/Jokers_Armor_button"
-            android:layout_width="147dp"
-            android:layout_height="79dp"
+            android:id="@+id/BibliotecaButton"
+            android:layout_width="182dp"
+            android:layout_height="84dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="192dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.23"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/news_button" />
 
         <Button
-            android:id="@+id/Calendar_button"
-            android:layout_width="148dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="20dp"
-            android:alpha="0"
-            android:text="Calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Jokers_Armor_button" />
-
-        <Button
-            android:id="@+id/Daily_Chores_button"
-            android:layout_width="183dp"
-            android:layout_height="63dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:alpha="0"
-            android:text="Daily_Chores"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Calendar_button" />
-
-        <Button
             android:id="@+id/Profile_Button"
-            android:layout_width="184dp"
-            android:layout_height="91dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="147dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="53dp"
             android:alpha="0"
-            android:text="Confidant_Data"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Daily_Chores_button" />
+            app:layout_constraintTop_toBottomOf="@+id/BibliotecaButton" />
 
         <Button
-            android:id="@+id/Quests_button"
-            android:layout_width="142dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/ajustes_Buton"
+            android:layout_width="147dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="53dp"
             android:alpha="0"
-            android:text="Quests"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
 
-        <Button
-            android:id="@+id/Community_button"
-            android:layout_width="180dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:alpha="0"
-            android:text="Community"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Quests_button" />
+        <!-- Más botones existentes aquí -->
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
