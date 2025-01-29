@@ -1,56 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".Biblioteca">
 
-    <!-- Título de la actividad -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    <!-- EditText para ingresar SteamID o Vanity URL -->
+    <EditText
+        android:id="@+id/inputBuscarID"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Buscar Juegos"
-        android:textSize="24sp"
+        android:layout_marginBottom="16dp"
+        android:hint="Ingresa tu SteamID o Vanity URL"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewGames"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintVertical_bias="0.2" />
 
-    <!-- Campo de texto para filtrar por nombre de juego -->
-    <EditText
-        android:id="@+id/gameNameInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Buscar por nombre de juego (opcional)"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        android:layout_marginTop="16dp"
-        android:padding="8dp" />
+    <!-- Botón para buscar los juegos del usuario -->
 
-    <!-- Botón para buscar los juegos -->
-    <Button
-        android:id="@+id/checkGamesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buscar Juegos"
-        app:layout_constraintTop_toBottomOf="@+id/gameNameInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <!-- RecyclerView para mostrar los juegos encontrados -->
+    <!-- RecyclerView para mostrar la lista de juegos -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gamesRecyclerView"
+        android:id="@+id/recyclerViewGames"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/checkGamesButton"
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscarID"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="16dp"/>
+        app:layout_constraintVertical_bias="0.7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
