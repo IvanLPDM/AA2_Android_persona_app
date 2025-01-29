@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".Ajustes">
 
-    <EditText
-        android:id="@+id/steam_id_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Introduce tu Steam ID"
-        android:inputType="text"
-        android:padding="8dp"
-        android:layout_marginBottom="16dp" />
-
-    <Button
-        android:id="@+id/fetch_profile_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Obtener perfil"
-        android:layout_marginBottom="16dp"/>
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/backgroundmain"
+        android:layout_width="607dp"
+        android:layout_height="929dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414"
+        app:srcCompat="@mipmap/mainscreenbackground" />
 
     <ImageView
-        android:id="@+id/avatar_image_view"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"/>
+        android:id="@+id/imageView9"
+        android:layout_width="526dp"
+        android:layout_height="920dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/puntos_fondo" />
 
-</LinearLayout>
+
+    <Button
+        android:id="@+id/change_color"
+        android:layout_width="143dp"
+        android:layout_height="53dp"
+        android:alpha="1"
+        android:text="Change Color
+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
