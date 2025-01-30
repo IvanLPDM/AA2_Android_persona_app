@@ -34,7 +34,6 @@ class Biblioteca : AppCompatActivity() {
         val backgroundImage: ImageFilterView = findViewById(R.id.CambiaColor)
         val selectorImage: ImageView = findViewById(R.id.Selector)
 
-        // Obtener el estado del tema guardado en SharedPreferences
         val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
         val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
 
@@ -70,12 +69,10 @@ class Biblioteca : AppCompatActivity() {
                 if (storedSteamId != null) {
                     // Verificar si el SteamID es un Vanity URL
                     if (storedSteamId.matches(Regex("\\d{17}"))) {
-                        // Ya es un SteamID64, usarlo directamente
-
                         getGamesForUser(storedSteamId)
 
                     } else {
-                        // Es un Vanity URL, hay que resolverlo
+                        // cambiamos a palabta
                         resolveVanityURL(storedSteamId) { resolvedSteamId ->
                             if (resolvedSteamId != null) {
                                 getGamesForUser(resolvedSteamId)
@@ -95,7 +92,6 @@ class Biblioteca : AppCompatActivity() {
             Toast.makeText(this, "Usuario no autenticado.", Toast.LENGTH_SHORT).show()
         }
 
-        // Agregar el TextWatcher al EditText
         gameNameInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val query = s.toString().lowercase().trim() // Obtener el texto de búsqueda en minúsculas
@@ -254,7 +250,6 @@ class Biblioteca : AppCompatActivity() {
                                     gameList.add(Game(gameId, gameName, imageUrl))
                                 }
 
-                                // Actualizar el RecyclerView en el hilo principal
                                 runOnUiThread {
                                     if (gameList.isNotEmpty()) {
                                         this@Biblioteca.gameList.clear() // Limpiar la lista anterior

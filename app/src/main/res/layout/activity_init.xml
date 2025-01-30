@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".InitActivity">
 
-    <!-- Fondo negro (ya existente) -->
     <ImageView
         android:id="@+id/Black"
         android:layout_width="785dp"
@@ -21,9 +20,6 @@
         app:srcCompat="@mipmap/black"
         tools:visibility="visible" />
 
-    <!-- RecyclerView para las noticias -->
-
-    <!-- Otros elementos existentes -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsRecyclerView"

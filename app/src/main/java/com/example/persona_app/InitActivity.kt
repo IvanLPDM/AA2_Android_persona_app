@@ -1,11 +1,9 @@
 package com.example.persona_app
 
 import NewsAdapter
-import NewsItem
 import NewsResponse
 import SteamApi
 import android.content.Intent
-import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
@@ -43,7 +41,6 @@ class InitActivity : AppCompatActivity() {
         val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
         val bibliotecaButton: Button = findViewById(R.id.BibliotecaButton)
 
-        // Obtener el estado del tema guardado en SharedPreferences
         val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
         val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
 

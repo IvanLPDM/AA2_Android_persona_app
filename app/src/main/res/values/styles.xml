@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Tema Claro -->
+    <!-- Tema 1 -->
     <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
         <item name="colorPrimary">#EE0000</item>
         <item name="colorAccent">#FFFFFF</item>
@@ -7,7 +7,7 @@
         <item name="android:textColorPrimary">#FFFFFF</item>
     </style>
 
-    <!-- Tema Oscuro -->
+    <!-- Tema 2 -->
     <style name="Theme.App.Dark" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">#FF5000</item>
         <item name="colorAccent">#00B7FF</item>

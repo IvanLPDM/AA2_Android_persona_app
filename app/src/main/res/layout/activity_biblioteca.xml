@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Biblioteca">
 
-    <!-- EditText para ingresar SteamID o Vanity URL -->
 
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -42,9 +41,6 @@
         app:layout_constraintVertical_bias="0.867"
         app:srcCompat="@mipmap/library_background_black_library" />
 
-    <!-- Botón para buscar los juegos del usuario -->
-
-    <!-- RecyclerView para mostrar la lista de juegos -->
 
     <EditText
         android:id="@+id/inputBuscarID"

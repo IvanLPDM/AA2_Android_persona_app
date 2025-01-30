@@ -35,8 +35,6 @@ class NewsView(
         // Cargar la imagen con Glide
         Glide.with(context)
             .load(newsItem.imageUrl).into(holder.newsImage)
-            //.placeholder(R.drawable.placeholder_image)
-            //.error(R.drawable.error_image)
 
 
         // Configurar el botón para abrir la URL
