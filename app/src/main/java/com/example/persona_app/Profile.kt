@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import android.widget.Toast
 import androidx.constraintlayout.utils.widget.ImageFilterView
@@ -68,6 +69,8 @@ class Profile : AppCompatActivity() {
 
             val avatarImageView: ImageView = findViewById(R.id.ImageProfile)
 
+            val progressBar: ProgressBar = findViewById(R.id.progressBar)
+
         //Base de datos
             val db = FirebaseFirestore.getInstance()
 
@@ -76,6 +79,7 @@ class Profile : AppCompatActivity() {
             val provider = user?.providerId
 
         if (user != null) {
+            progressBar.visibility = View.VISIBLE
             db.collection("Users").document(email).get().addOnSuccessListener { document ->
                 // Obtener datos desde Firestore
                 val username = document.getString("SteamID")
@@ -93,6 +97,7 @@ class Profile : AppCompatActivity() {
                             fetchSteamProfile(resolvedSteamId) { avatarUrl, personaName ->
                                 runOnUiThread {
                                     if (avatarUrl != null) {
+                                        progressBar.visibility = View.GONE
                                         // Mostrar avatar en el ImageView
                                         Glide.with(this).load(avatarUrl).into(avatarImageView)
                                     }
@@ -102,9 +107,11 @@ class Profile : AppCompatActivity() {
                     }
                 }
             }.addOnFailureListener {
+                progressBar.visibility = View.GONE
                 Toast.makeText(this, "Error al cargar datos del usuario.", Toast.LENGTH_SHORT).show()
             }
         } else {
+            progressBar.visibility = View.GONE
             Toast.makeText(this, "Usuario no autenticado.", Toast.LENGTH_SHORT).show()
         }
 
@@ -160,7 +167,7 @@ class Profile : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener{
-
+            progressBar.visibility = View.VISIBLE
             Log.d("email: ", email + " SteamID: " + usernameText.text.toString() + " Phonre: " + phoneText.text.toString())
 
             //STEAM
@@ -172,6 +179,7 @@ class Profile : AppCompatActivity() {
                     if (steamId != null) {
                         fetchSteamProfile(steamId) { avatarUrl, personaName ->
                             runOnUiThread {
+                                progressBar.visibility = View.GONE
                                 if (avatarUrl != null) {
                                     // Mostrar avatar y guardamos nombre y telefono
                                     db.collection("Users").document(email).set(
@@ -188,11 +196,13 @@ class Profile : AppCompatActivity() {
                         }
                     } else {
                         runOnUiThread {
+                            progressBar.visibility = View.GONE
                             Toast.makeText(this, "ID no válido o perfil no encontrado.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             } else {
+                progressBar.visibility = View.GONE
                 Toast.makeText(this, "Por favor, introduce un Steam ID o Vanity URL.", Toast.LENGTH_SHORT).show()
             }
         }
