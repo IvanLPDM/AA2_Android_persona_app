@@ -32,6 +32,7 @@ class Profile : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         val backgroundImage: ImageFilterView = findViewById(R.id.Color_Cambia)
+        val selectorImage: ImageView = findViewById(R.id.Selector)
 
         // Obtener el estado del tema guardado en SharedPreferences
         val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
@@ -40,8 +41,11 @@ class Profile : AppCompatActivity() {
         // Aplicar el tema correcto
         if (isDarkMode) {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_2, theme))
+            selectorImage.setImageResource(R.mipmap.selector_profile_v2)
+
         } else {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
+            selectorImage.setImageResource(R.mipmap.screen_profile)
         }
 
         //Selector

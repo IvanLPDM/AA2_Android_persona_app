@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.utils.widget.ImageFilterView
@@ -31,6 +32,7 @@ class Biblioteca : AppCompatActivity() {
         setContentView(R.layout.activity_biblioteca)
 
         val backgroundImage: ImageFilterView = findViewById(R.id.CambiaColor)
+        val selectorImage: ImageView = findViewById(R.id.Selector)
 
         // Obtener el estado del tema guardado en SharedPreferences
         val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
@@ -39,8 +41,11 @@ class Biblioteca : AppCompatActivity() {
         // Aplicar el tema correcto
         if (isDarkMode) {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_2, theme))
+            selectorImage.setImageResource(R.mipmap.selector_library_v2)
+
         } else {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
+            selectorImage.setImageResource(R.mipmap.selector_library)
         }
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerViewGames)
