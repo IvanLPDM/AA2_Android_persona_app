@@ -1,13 +1,17 @@
 package com.example.persona_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.utils.widget.ImageFilterView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +29,19 @@ class Biblioteca : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_biblioteca)
+
+        val backgroundImage: ImageFilterView = findViewById(R.id.CambiaColor)
+
+        // Obtener el estado del tema guardado en SharedPreferences
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
+
+        // Aplicar el tema correcto
+        if (isDarkMode) {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_2, theme))
+        } else {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
+        }
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerViewGames)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -84,6 +101,55 @@ class Biblioteca : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
+        val showImageButton: Button = findViewById(R.id.menuOpen)
+        val hiddenImageButton: Button = findViewById(R.id.menuClose)
+        val hiddenImageZone: Button = findViewById(R.id.CloseZone)
+        val sceneSelectorLayout: ConstraintLayout = findViewById(R.id.scene_selector_layout)
+
+        val newsButton: Button = findViewById(R.id.news_button)
+        val profileButton: Button = findViewById(R.id.Profile_Button)
+        val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
+        val bibliotecaButton: Button = findViewById(R.id.BibliotecaButton)
+
+        //UI
+        showImageButton.setOnClickListener {
+            sceneSelectorLayout.visibility = View.VISIBLE
+            hiddenImageButton.visibility = View.VISIBLE
+            hiddenImageZone.visibility = View.VISIBLE
+        }
+
+        hiddenImageButton.setOnClickListener {
+            sceneSelectorLayout.visibility = View.INVISIBLE
+            hiddenImageButton.visibility = View.INVISIBLE
+            hiddenImageZone.visibility = View.INVISIBLE
+        }
+
+        hiddenImageZone.setOnClickListener {
+            sceneSelectorLayout.visibility = View.INVISIBLE
+            hiddenImageButton.visibility = View.INVISIBLE
+            hiddenImageZone.visibility = View.INVISIBLE
+        }
+
+        newsButton.setOnClickListener{
+            val intent = Intent(this, InitActivity::class.java)
+            startActivity(intent)
+        }
+
+        profileButton.setOnClickListener{
+            val intent = Intent(this, Profile::class.java)
+            startActivity(intent)
+        }
+
+        ajustesButton.setOnClickListener{
+            val intent = Intent(this, Ajustes::class.java)
+            startActivity(intent)
+        }
+
+        bibliotecaButton.setOnClickListener{
+            val intent = Intent(this, Biblioteca::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun resolveVanityURL(vanityUrl: String, callback: (String?) -> Unit) {
