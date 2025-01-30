@@ -12,6 +12,7 @@ import android.widget.Button
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,18 @@ class InitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
 
+        val backgroundImage: ImageFilterView = findViewById(R.id.Color_Cambia_3)
 
+        // Obtener el estado del tema guardado en SharedPreferences
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
+
+        // Aplicar el tema correcto
+        if (isDarkMode) {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_2, theme))
+        } else {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
+        }
 
         val showImageButton: Button = findViewById(R.id.menuOpen)
         val hiddenImageButton: Button = findViewById(R.id.menuClose)
