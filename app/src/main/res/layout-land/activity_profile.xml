@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/Color_Cambia"
+        android:layout_width="766dp"
+        android:layout_height="445dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/fondo_color_landscape" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="1317dp"
+        android:layout_height="490dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/puntos_landscape" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="1088dp"
+        android:layout_height="465dp"
+        android:layout_marginTop="-80dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/profile_landscape" />
+
+    <ImageView
+        android:id="@+id/ImageProfile"
+        android:layout_width="128dp"
+        android:layout_height="107dp"
+        android:layout_marginBottom="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.354"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/menuOpen"
+        android:layout_width="120dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="44dp"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/menuClose"
+        android:layout_width="76dp"
+        android:layout_height="72dp"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/CloseZone"
+        android:layout_width="449dp"
+        android:layout_height="413dp"
+        android:alpha="0"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/GetButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962"
+        app:srcCompat="@mipmap/button_basic" />
+
+    <Button
+        android:id="@+id/logOutButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="28dp"
+        android:alpha="0"
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="4dp"
+        android:alpha="0"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/logOutButton"
+        app:layout_constraintEnd_toEndOf="@+id/logOutButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/logOutButton" />
+
+    <Button
+        android:id="@+id/GetButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:text="Get"
+        app:layout_constraintBottom_toTopOf="@+id/DeleteButton"
+        app:layout_constraintEnd_toEndOf="@+id/DeleteButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/DeleteButton" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/GetButton"
+        app:layout_constraintEnd_toEndOf="@+id/GetButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/GetButton" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/logOutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/button_basic" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeleteButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/button_basic" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/DeleteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/button_basic" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="176dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="16dp"
+        android:text="Save"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/GetButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="176dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
+        android:text="Get"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/DeleteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.738"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="176dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="4dp"
+        android:text="Delete"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/logOutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.745"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="176dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="20dp"
+        android:text="Cerrar Session"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/usernameText"
+        android:layout_width="244dp"
+        android:layout_height="44dp"
+        android:hint="SteamID"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.283"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.621" />
+
+    <EditText
+        android:id="@+id/PhoneText"
+        android:layout_width="252dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:hint="Phone"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/usernameText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/usernameText"
+        app:layout_constraintTop_toBottomOf="@+id/usernameText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="167dp"
+        android:layout_height="29dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/scene_selector_layout"
+        android:layout_width="331dp"
+        android:layout_height="873dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="-20dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <ImageView
+            android:id="@+id/Selector"
+            android:layout_width="354dp"
+            android:layout_height="766dp"
+            android:layout_marginBottom="108dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/screen_profile" />
+
+        <Button
+            android:id="@+id/news_button"
+            android:layout_width="167dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="88dp"
+            android:alpha="0"
+            android:text="News"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/BibliotecaButton"
+            android:layout_width="153dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="53dp"
+            android:alpha="0"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
+
+        <Button
+            android:id="@+id/Profile_Button"
+            android:layout_width="134dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="53dp"
+            android:alpha="0"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/news_button" />
+
+        <Button
+            android:id="@+id/ajustes_Buton"
+            android:layout_width="147dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="53dp"
+            android:alpha="0"
+            android:text="Jokers_Armor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.147"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BibliotecaButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
