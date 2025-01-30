@@ -7,7 +7,6 @@ import android.content.Intent
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import android.app.AlertDialog
-import android.content.res.Configuration
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val backgroundImage: ImageFilterView = findViewById(R.id.backgroundmain)
+        val backgroundImage: ImageFilterView = findViewById(R.id.ColorCambia_2)
 
         // Obtener el estado del tema guardado en SharedPreferences
         val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
