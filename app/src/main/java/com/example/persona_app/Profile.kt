@@ -10,8 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,6 +30,23 @@ class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
+        val backgroundImage: ImageFilterView = findViewById(R.id.Color_Cambia)
+        val selectorImage: ImageView = findViewById(R.id.Selector)
+
+        // Obtener el estado del tema guardado en SharedPreferences
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
+
+        // Aplicar el tema correcto
+        if (isDarkMode) {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_2, theme))
+            selectorImage.setImageResource(R.mipmap.selector_profile_v2)
+
+        } else {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
+            selectorImage.setImageResource(R.mipmap.screen_profile)
+        }
 
         //Selector
             val showImageButton: Button = findViewById(R.id.menuOpen)

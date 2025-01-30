@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SplashActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/ColorCambia"
         android:layout_width="537dp"
         android:layout_height="941dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,4 +15,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/splashscreen" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="850dp"
+        android:layout_height="1149dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/puntos_fondo" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="357dp"
+        android:layout_height="600dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/splash_screen_logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
