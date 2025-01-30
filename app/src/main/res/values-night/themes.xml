@@ -1,7 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Persona_app" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+    <style name="Theme.App.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF5000</item>
+        <item name="colorAccent">#00B7FF</item>
+        <item name="android:windowBackground">#121212</item>
     </style>
+    <style name="Theme.Persona_app" parent="Base.Theme.Persona_app" />
+
+
 </resources>

@@ -39,7 +39,8 @@ class Profile : AppCompatActivity() {
 
             val newsButton: Button = findViewById(R.id.news_button)
             val profileButton: Button = findViewById(R.id.Profile_Button)
-            val ajustesButton: Button = findViewById(R.id.ajustes_Buton2)
+            val ajustesButton: Button = findViewById(R.id.ajustes_Buton)
+            val bibliotecaButton: Button = findViewById(R.id.BibliotecaButton)
 
             val saveButton: Button = findViewById(R.id.SaveButton)
             val getButton: Button = findViewById(R.id.GetButton)
@@ -120,6 +121,11 @@ class Profile : AppCompatActivity() {
 
             ajustesButton.setOnClickListener{
                 val intent = Intent(this, Ajustes::class.java)
+                startActivity(intent)
+            }
+
+            bibliotecaButton.setOnClickListener{
+                val intent = Intent(this, Biblioteca::class.java)
                 startActivity(intent)
             }
 

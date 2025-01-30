@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Tema Claro -->
+    <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">#EE0000</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
+    <!-- Tema Oscuro -->
+    <style name="Theme.App.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF5000</item>
+        <item name="colorAccent">#00B7FF</item>
+        <item name="android:windowBackground">#121212</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+</resources>

@@ -1,8 +1,5 @@
 package com.example.persona_app
 
-import NewsResponse
-import SteamApi
-import SteamApiService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -10,14 +7,14 @@ import android.content.Intent
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import android.app.AlertDialog
-import android.content.Context
+import android.content.res.Configuration
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import android.util.Log
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.example.persona_app.firebase.AnalyticsActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +27,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val backgroundImage: ImageFilterView = findViewById(R.id.backgroundmain)
+
+        // Obtener el estado del tema guardado en SharedPreferences
+        val sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
+
+        // Aplicar el tema correcto
+        if (isDarkMode) {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_2, theme))
+        } else {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
+        }
+
 
         // Verificar si el usuario ya está autenticado
         session()
