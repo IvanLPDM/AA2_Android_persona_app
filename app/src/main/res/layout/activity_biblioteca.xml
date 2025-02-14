@@ -40,10 +40,22 @@
         app:srcCompat="@mipmap/library_background_black_library" />
 
 
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="720dp"
+        android:layout_height="1139dp"
+        android:layout_marginTop="-140dp"
+        android:alpha="100"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/library_background_black_library"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/inputBuscarID"
-        android:layout_width="328dp"
-        android:layout_height="56dp"
+        android:layout_width="385dp"
+        android:layout_height="54dp"
         android:layout_marginTop="208dp"
         android:hint="Ingresa tu SteamID o Vanity URL"
         android:inputType="text"
