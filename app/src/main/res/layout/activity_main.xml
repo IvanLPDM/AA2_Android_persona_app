@@ -9,23 +9,24 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/ColorCambia_2"
-        android:layout_width="607dp"
-        android:layout_height="929dp"
+        android:layout_width="1155dp"
+        android:layout_height="1959dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.414"
-        app:srcCompat="@mipmap/mainscreenbackground" />
+        app:srcCompat="@mipmap/background" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="526dp"
-        android:layout_height="920dp"
+        android:layout_width="1394dp"
+        android:layout_height="2005dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496"
         app:srcCompat="@mipmap/puntos_fondo" />
 
     <ImageView
@@ -34,8 +35,9 @@
         android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/mainscreenbox" />
 
     <EditText
@@ -50,9 +52,10 @@
         android:textColorHint="#999999"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463" />
+        app:layout_constraintVertical_bias="0.475" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -70,38 +73,37 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/usernameEditText"
         app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.138" />
 
     <Button
         android:id="@+id/RegisterButton"
         android:layout_width="141dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="52dp"
         android:layout_marginBottom="156dp"
         android:alpha="0"
         android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/loginButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/boxmain"
+        app:layout_constraintStart_toStartOf="@+id/boxmain" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="143dp"
         android:layout_height="53dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="156dp"
         android:alpha="0"
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintBottom_toBottomOf="@+id/boxmain"
+        app:layout_constraintEnd_toEndOf="@+id/boxmain" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="385dp"
         android:layout_height="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:srcCompat="@mipmap/button_basic" />
@@ -110,46 +112,47 @@
         android:id="@+id/googleButton"
         android:layout_width="262dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="76dp"
         android:alpha="0"
         android:drawableStart="@mipmap/google"
         android:text="Google"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/boxmain"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="133dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="60dp"
         android:text="Register"
         android:textAlignment="center"
         android:textColor="#989898"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleButton"
-        app:layout_constraintEnd_toStartOf="@+id/loginButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/boxmain"
+        app:layout_constraintStart_toStartOf="@+id/boxmain"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="133dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="40dp"
         android:text="Login"
         android:textAlignment="center"
         android:textColor="#989898"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleButton"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/boxmain"
+        app:layout_constraintEnd_toEndOf="@+id/boxmain"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="199dp"
         android:layout_height="45dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="36dp"
         android:text="Google"
         android:textAlignment="center"
         android:textColor="#989898"

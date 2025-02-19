@@ -12,8 +12,8 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/CambiaColor"
-        android:layout_width="945dp"
-        android:layout_height="501dp"
+        android:layout_width="1198dp"
+        android:layout_height="748dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,29 +22,29 @@
 
     <ImageView
         android:id="@+id/imageView19"
-        android:layout_width="941dp"
-        android:layout_height="544dp"
+        android:layout_width="1178dp"
+        android:layout_height="735dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/puntos_landscape" />
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="882dp"
-        android:layout_height="508dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.664"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867"
-        app:srcCompat="@mipmap/library_landscape" />
-
     <!-- Botón para buscar los juegos del usuario -->
 
     <!-- RecyclerView para mostrar la lista de juegos -->
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="1217dp"
+        android:layout_height="794dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.599"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/library_landscape" />
 
     <EditText
         android:id="@+id/inputBuscarID"
@@ -55,21 +55,21 @@
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.314" />
+        app:layout_constraintVertical_bias="0.241" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGames"
-        android:layout_width="375dp"
-        android:layout_height="157dp"
+        android:layout_width="569dp"
+        android:layout_height="226dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputBuscarID"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
         android:id="@+id/menuOpen"
@@ -91,8 +91,8 @@
 
     <Button
         android:id="@+id/CloseZone"
-        android:layout_width="195dp"
-        android:layout_height="784dp"
+        android:layout_width="660dp"
+        android:layout_height="664dp"
         android:alpha="0"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

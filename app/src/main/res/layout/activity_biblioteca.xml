@@ -8,11 +8,10 @@
     tools:context=".Biblioteca">
 
 
-
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/CambiaColor"
-        android:layout_width="540dp"
-        android:layout_height="962dp"
+        android:layout_width="1037dp"
+        android:layout_height="1385dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imageView19"
-        android:layout_width="599dp"
-        android:layout_height="895dp"
+        android:layout_width="1116dp"
+        android:layout_height="1231dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,43 +30,57 @@
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="569dp"
-        android:layout_height="882dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="720dp"
+        android:layout_height="1139dp"
+        android:layout_marginTop="-140dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.664"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867"
         app:srcCompat="@mipmap/library_background_black_library" />
 
 
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="720dp"
+        android:layout_height="1139dp"
+        android:layout_marginTop="-140dp"
+        android:alpha="100"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/library_background_black_library"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/inputBuscarID"
-        android:layout_width="328dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="148dp"
+        android:layout_width="385dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="208dp"
         android:hint="Ingresa tu SteamID o Vanity URL"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGames"
-        android:layout_width="320dp"
-        android:layout_height="409dp"
+        android:layout_width="407dp"
+        android:layout_height="522dp"
+        android:layout_marginTop="-50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.561"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputBuscarID"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.387" />
 
     <Button
         android:id="@+id/menuOpen"
-        android:layout_width="91dp"
-        android:layout_height="78dp"
+        android:layout_width="139dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,8 +95,8 @@
 
     <Button
         android:id="@+id/CloseZone"
-        android:layout_width="195dp"
-        android:layout_height="784dp"
+        android:layout_width="379dp"
+        android:layout_height="937dp"
         android:alpha="0"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

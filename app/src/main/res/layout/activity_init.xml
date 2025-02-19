@@ -9,22 +9,24 @@
 
     <ImageView
         android:id="@+id/Black"
-        android:layout_width="785dp"
-        android:layout_height="893dp"
+        android:layout_width="1020dp"
+        android:layout_height="1404dp"
+        android:alpha="100"
+        android:background="#000000"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/black"
+        tools:srcCompat="@mipmap/black"
         tools:visibility="visible" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsRecyclerView"
-        android:layout_width="476dp"
-        android:layout_height="597dp"
+        android:layout_width="612dp"
+        android:layout_height="755dp"
         android:layout_marginTop="76dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,34 +35,22 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/news_item" />
 
-    <ImageView
-        android:id="@+id/black"
-        android:layout_width="918dp"
-        android:layout_height="90dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/black" />
-
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/Color_Cambia_3"
-        android:layout_width="423dp"
-        android:layout_height="118dp"
-        android:layout_marginTop="672dp"
+        android:layout_width="1168dp"
+        android:layout_height="384dp"
+        android:layout_marginTop="845dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/button_basic" />
+        app:srcCompat="@mipmap/fondo_color_landscape" />
 
     <ImageView
         android:id="@+id/imageView17"
-        android:layout_width="456dp"
-        android:layout_height="397dp"
-        android:layout_marginTop="532dp"
+        android:layout_width="648dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="790dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/puntos_horizontal" />
@@ -69,9 +59,9 @@
         android:id="@+id/down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="392dp"
+        android:layout_marginTop="550dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/screen_down_black" />
@@ -83,6 +73,7 @@
         android:layout_marginStart="-60dp"
         android:layout_marginTop="-20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/newsscreen_up" />
@@ -91,6 +82,8 @@
         android:id="@+id/menuOpen"
         android:layout_width="91dp"
         android:layout_height="78dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="4dp"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -115,8 +108,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/scene_selector_layout"
-        android:layout_width="331dp"
-        android:layout_height="873dp"
+        android:layout_width="494dp"
+        android:layout_height="1006dp"
         android:layout_marginStart="-20dp"
         android:layout_marginTop="-20dp"
         android:orientation="vertical"
@@ -124,15 +117,17 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/Selector"
-            android:layout_width="354dp"
-            android:layout_height="766dp"
+            android:layout_width="408dp"
+            android:layout_height="943dp"
+            android:layout_marginStart="-58dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="108dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/screen_news" />
 
@@ -140,8 +135,8 @@
             android:id="@+id/news_button"
             android:layout_width="167dp"
             android:layout_height="44dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="120dp"
             android:alpha="0"
             android:text="News"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,12 +147,12 @@
             android:layout_width="153dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="36dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.176"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
 
@@ -166,12 +161,12 @@
             android:layout_width="134dp"
             android:layout_height="61dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintHorizontal_bias="0.195"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/news_button" />
 
@@ -180,12 +175,12 @@
             android:layout_width="147dp"
             android:layout_height="79dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.147"
+            app:layout_constraintHorizontal_bias="0.172"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BibliotecaButton" />
 

@@ -10,41 +10,65 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/Color_Cambia_3"
-        android:layout_width="927dp"
-        android:layout_height="559dp"
+        android:layout_width="1122dp"
+        android:layout_height="722dp"
         android:layout_marginBottom="-80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/fondo_color_landscape" />
 
+
     <ImageView
         android:id="@+id/imageView21"
-        android:layout_width="909dp"
-        android:layout_height="606dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="1464dp"
+        android:layout_height="644dp"
+        android:layout_marginTop="200dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/puntos_landscape" />
 
     <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="801dp"
-        android:layout_height="460dp"
-        android:layout_marginTop="-40dp"
+        android:id="@+id/imageView24"
+        android:layout_width="972dp"
+        android:layout_height="631dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/news_background_negro_landscape" />
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="981dp"
+        android:layout_height="635dp"
+        android:layout_marginTop="-74dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/news_background_negro_landscape" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="968dp"
+        android:layout_height="389dp"
+        android:layout_marginTop="20dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/black"
+        tools:srcCompat="@mipmap/black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsRecyclerView"
-        android:layout_width="446dp"
-        android:layout_height="231dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="967dp"
+        android:layout_height="416dp"
+        android:layout_marginTop="110dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -86,8 +110,8 @@
 
     <Button
         android:id="@+id/menuOpen"
-        android:layout_width="91dp"
-        android:layout_height="78dp"
+        android:layout_width="120dp"
+        android:layout_height="99dp"
         android:layout_marginStart="36dp"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +139,7 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/Selector"
@@ -134,9 +158,9 @@
         <Button
             android:id="@+id/news_button"
             android:layout_width="167dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="88dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="60dp"
             android:alpha="0"
             android:text="News"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,12 +171,12 @@
             android:layout_width="153dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.342"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Profile_Button" />
 
@@ -161,12 +185,12 @@
             android:layout_width="134dp"
             android:layout_height="61dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/news_button" />
 
@@ -175,12 +199,12 @@
             android:layout_width="171dp"
             android:layout_height="44dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="53dp"
             android:alpha="0"
             android:text="Jokers_Armor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BibliotecaButton" />
 

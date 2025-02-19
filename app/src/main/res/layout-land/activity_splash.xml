@@ -8,8 +8,8 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/ColorCambia"
-        android:layout_width="941dp"
-        android:layout_height="467dp"
+        android:layout_width="1823dp"
+        android:layout_height="840dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,8 +18,8 @@
 
     <ImageView
         android:id="@+id/imageView15"
-        android:layout_width="987dp"
-        android:layout_height="584dp"
+        android:layout_width="2078dp"
+        android:layout_height="1010dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
