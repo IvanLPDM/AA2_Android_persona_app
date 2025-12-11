@@ -14,8 +14,10 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
@@ -24,6 +26,9 @@ import retrofit2.Response
 
 
 class InitActivity : AppCompatActivity() {
+
+    private lateinit var bottomNavigationView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
@@ -52,6 +57,14 @@ class InitActivity : AppCompatActivity() {
         } else {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_1, theme))
             selectorImage.setImageResource(R.mipmap.screen_news)
+        }
+
+
+        //Navegation Bar
+        bottomNavigationView = findViewById(R.id.navbar)
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            handleNavigationItemSelected(item.itemId)
         }
 
 
@@ -165,5 +178,28 @@ class InitActivity : AppCompatActivity() {
 
         val bundle = intent.extras
 
+        //Fragments----------------------------
+        loadFragment(init())
+    }
+
+    //Añadir Fragments
+    private fun handleNavigationItemSelected(itemId: Int): Boolean {
+        return when (itemId)
+        {
+            R.id.init ->{
+                loadFragment(init())
+                true
+            }
+            R.id.perfil->{
+                loadFragment(Profile_fragment())
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun loadFragment(fragment: Fragment)
+    {
+        supportFragmentManager.beginTransaction().replace(R.id.frame, fragment).commit()
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Init"
+        android:icon="@drawable/init"
+        android:id="@+id/init" />
+    <item android:title="Biblioteca"
+        android:icon="@drawable/biblioteca"
+        android:id="@+id/biblioteca" />
+    <item android:title="Profile"
+        android:icon="@drawable/baseline_perm_identity_24"
+        android:id="@+id/perfil" />
+    <item android:title="Ajustes"
+        android:icon="@drawable/baseline_settings_24"
+        android:id="@+id/ajustes" />
+</menu>
