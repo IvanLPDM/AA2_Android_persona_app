@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.constraintlayout.utils.widget.ImageFilterView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -86,6 +85,13 @@ class Profile_fragment : Fragment(R.layout.fragment_profile_fragment) {
         } else {
             progressBar.visibility = View.GONE
             Toast.makeText(requireContext(), "Usuario no autenticado.", Toast.LENGTH_SHORT).show()
+        }
+
+        //Salir de la app
+        val exitButton: Button = view.findViewById(R.id.Salir)
+        exitButton.setOnClickListener {
+            requireActivity().finishAffinity() // Cierra todas las Activities abiertas
+            System.exit(0) // Termina el proceso de la app
         }
 
 
