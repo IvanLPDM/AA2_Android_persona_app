@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Persona_app"
         tools:targetApi="31">
         <activity
+            android:name=".navegationBar"
+            android:exported="false" />
+        <activity
             android:name=".Biblioteca"
             android:exported="false" />
         <activity
@@ -35,7 +38,7 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".InitActivity"
+            android:name=".host_fragments_activity"
             android:exported="false" /> <!-- SplashActivity como actividad principal -->
         <activity
             android:name=".SplashActivity"
