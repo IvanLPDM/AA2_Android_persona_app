@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Biblioteca">
+
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/CambiaColor"
+        android:layout_width="1910dp"
+        android:layout_height="1745dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/background" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="1840dp"
+        android:layout_height="1554dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/puntos_fondo" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="791dp"
+        android:layout_height="1088dp"
+        android:layout_marginTop="-140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.664"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/library_background_black_library" />
+
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="793dp"
+        android:layout_height="1233dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="-50dp"
+        android:alpha="100"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/library_background_black_library"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/inputBuscarID"
+        android:layout_width="385dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="224dp"
+        android:hint="Ingresa tu SteamID o Vanity URL"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGames"
+        android:layout_width="451dp"
+        android:layout_height="574dp"
+        android:layout_marginTop="-50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscarID"
+        app:layout_constraintVertical_bias="0.387" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

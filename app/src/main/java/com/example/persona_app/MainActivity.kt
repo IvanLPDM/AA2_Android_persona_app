@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
                         if(it.isSuccessful)
                         {
-                            val intent = Intent(this, InitActivity::class.java).apply {
+                            val intent = Intent(this, host_fragments_activity::class.java).apply {
                                 putExtra("email", username.text.toString())
                             }
                             logLoginEvent("email")
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     pasword.text.toString()
                 ).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        val intent = Intent(this, InitActivity::class.java).apply {
+                        val intent = Intent(this, host_fragments_activity::class.java).apply {
                             putExtra("email", username.text.toString())
                         }
                         logLoginEvent("email")
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
 
-            val intent = Intent(this, InitActivity::class.java)
+            val intent = Intent(this, host_fragments_activity::class.java)
             startActivity(intent)
             finish()
         }
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential)
                         .addOnCompleteListener { authTask ->
                             if (authTask.isSuccessful) {
-                                val intent = Intent(this, InitActivity::class.java).apply {
+                                val intent = Intent(this, host_fragments_activity::class.java).apply {
                                     putExtra("email", account.email)
                                 }
                                 logLoginEvent("google")

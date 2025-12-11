@@ -1,21 +1,115 @@
 package com.example.persona_app
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import NewsAdapter
+import NewsResponse
+import SteamApi
+import android.content.Intent
+import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.constraintlayout.utils.widget.ImageFilterView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class init : Fragment(R.layout.fragment_init) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val backgroundImage: ImageFilterView = view.findViewById(R.id.Color_Cambia_3)
+        val newsRecyclerView: RecyclerView = view.findViewById(R.id.newsRecyclerView)
 
 
-class init : Fragment() {
+        val sharedPreferences =
+            requireContext().getSharedPreferences("AppSettings", AppCompatActivity.MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_init, container, false)
+        if (isDarkMode) {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_2, requireContext().theme))
+            //selectorImage.setImageResource(R.mipmap.selector_new_v2r)
+        } else {
+            backgroundImage.setColorFilter(resources.getColor(R.color.style_1, requireContext().theme))
+            //selectorImage.setImageResource(R.mipmap.screen_news)
+        }
+
+
+
+        // --------------------------------------------
+        // FIREBASE
+        // --------------------------------------------
+        val db = FirebaseFirestore.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            val email = user.email.toString()
+            db.collection("Users").document(email).get().addOnSuccessListener { document ->
+                if (document.exists()) {
+
+                    val steamId = document.getString("SteamID")
+                    if (!steamId.isNullOrEmpty()) {
+
+                        Toast.makeText(requireContext(), "Bienvenido, $steamId!", Toast.LENGTH_SHORT)
+                            .show()
+
+                    } else
+                        Toast.makeText(
+                            requireContext(),
+                            "Inicia sesión en Steam desde Profile.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                }
+            }
+        }
+
+
+        // -----------------------------
+        // API NEWS
+        // --------------------------------------------
+        val steamApi = SteamApiService.retrofit.create(SteamApi::class.java)
+
+        newsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        try {
+            steamApi.getNewsForApp("1687950", "DFDD5A1D4ABF350102931F27ECBA2F40")
+                .enqueue(object : Callback<NewsResponse> {
+                    override fun onResponse(
+                        call: Call<NewsResponse>,
+                        response: Response<NewsResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val newsItems = response.body()?.appnews?.newsitems
+
+                            if (newsItems != null) {
+                                val adapter = NewsAdapter(requireContext(), newsItems) { url ->
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                    startActivity(intent)
+                                }
+                                newsRecyclerView.adapter = adapter
+                            }
+                        } else {
+                            Log.e("SteamAPI_Err", "Error: ${response.code()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                        Log.e("SteamAPI_Err", "Failed: ${t.message}")
+                    }
+                })
+        } catch (e: Exception) {
+            Log.e("SteamAPI_Err", "Unexpected error: ${e.localizedMessage}")
+        }
     }
-
-
 }
