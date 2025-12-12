@@ -51,5 +51,5 @@ class NewsAdapter(
     fun updateNews(newNewsList: List<NewsItem>) {
         newsList = newNewsList
         notifyDataSetChanged()
-    }
+    }   
 }
