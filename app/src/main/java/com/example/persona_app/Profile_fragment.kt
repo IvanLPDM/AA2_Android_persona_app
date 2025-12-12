@@ -158,7 +158,7 @@ class Profile_fragment : Fragment(R.layout.fragment_profile_fragment) {
 
     private fun resolveVanityURL(vanityUrl: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
-        val url = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=$steamApiKey&vanityurl=$vanityUrl"
+            val url = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=$steamApiKey&vanityurl=$vanityUrl"
         val request = Request.Builder().url(url).build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
