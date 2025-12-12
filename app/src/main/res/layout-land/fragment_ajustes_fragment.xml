@@ -9,37 +9,36 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/ColorCambia_2"
-        android:layout_width="1738dp"
-        android:layout_height="1841dp"
+        android:layout_width="1929dp"
+        android:layout_height="700dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.312"
-        app:srcCompat="@mipmap/mainscreenbackground" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/fondo_color_landscape" />
 
     <ImageView
         android:id="@+id/imageView28"
-        android:layout_width="1255dp"
-        android:layout_height="519dp"
-        android:layout_marginTop="704dp"
+        android:layout_width="1522dp"
+        android:layout_height="675dp"
+        android:layout_marginTop="344dp"
         android:src="@mipmap/puntos_landscape"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="784dp"
-        android:layout_height="944dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="1477dp"
+        android:layout_height="1003dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/settings_background_black" />
+        app:srcCompat="@mipmap/settings_landscape" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -80,9 +79,11 @@
         app:layout_constraintVertical_bias="0.481" />
 
     <ImageView
-        android:id="@+id/imageView29"
-        android:layout_width="197dp"
-        android:layout_height="185dp"
+        android:id="@+id/imageView34"
+        android:layout_width="199dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="16dp"
         android:src="@mipmap/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

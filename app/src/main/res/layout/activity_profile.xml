@@ -150,7 +150,7 @@
         app:layout_constraintStart_toStartOf="@+id/GetButton" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/Save_Image"
         android:layout_width="182dp"
         android:layout_height="46dp"
         android:layout_marginTop="6dp"
@@ -161,7 +161,7 @@
         app:srcCompat="@mipmap/button_basic" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/Get_image"
         android:layout_width="182dp"
         android:layout_height="46dp"
         android:layout_marginBottom="2dp"
@@ -171,7 +171,7 @@
         app:srcCompat="@mipmap/button_basic" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/cerrarsession_image"
         android:layout_width="182dp"
         android:layout_height="46dp"
         android:layout_marginBottom="4dp"
@@ -182,7 +182,7 @@
         app:srcCompat="@mipmap/button_basic" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/delete_image"
         android:layout_width="182dp"
         android:layout_height="46dp"
         android:layout_marginTop="4dp"
@@ -193,7 +193,7 @@
         app:srcCompat="@mipmap/button_basic" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Save_txt"
         android:layout_width="176dp"
         android:layout_height="29dp"
         android:layout_marginBottom="20dp"
@@ -205,7 +205,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/Get_txt"
         android:layout_width="176dp"
         android:layout_height="29dp"
         android:layout_marginBottom="2dp"
@@ -217,7 +217,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/Delete_txt"
         android:layout_width="176dp"
         android:layout_height="29dp"
         android:layout_marginBottom="4dp"
@@ -238,7 +238,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/Delete_txt" />
 
     <EditText
         android:id="@+id/usernameText"
