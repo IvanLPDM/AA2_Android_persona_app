@@ -73,7 +73,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/usernameEditText"
         app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintVertical_bias="0.216" />
 
     <Button
         android:id="@+id/RegisterButton"
@@ -132,13 +132,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/boxmain"
         app:layout_constraintStart_toStartOf="@+id/boxmain"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="133dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="48dp"
         android:text="Login"
         android:textAlignment="center"
         android:textColor="#989898"
@@ -146,13 +146,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/boxmain"
         app:layout_constraintEnd_toEndOf="@+id/boxmain"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.824" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="199dp"
         android:layout_height="45dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:text="Google"
         android:textAlignment="center"
         android:textColor="#989898"
