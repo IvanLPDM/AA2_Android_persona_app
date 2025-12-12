@@ -25,6 +25,9 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
     private val gameList = mutableListOf<Game>()
     private lateinit var sharedPreferences: SharedPreferences
 
+    // Guardar la llamada para poder cancelarla en onDestroyView
+    private var gamesCall: Call? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -32,16 +35,17 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewGames)
         val gameNameInput: EditText = view.findViewById(R.id.inputBuscarID)
 
-        sharedPreferences = requireContext().getSharedPreferences("AppSettings", androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences(
+            "AppSettings",
+            androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
+        )
         val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
 
         // Aplicar tema
         if (isDarkMode) {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_2, requireContext().theme))
-            //selectorImage.setImageResource(R.mipmap.selector_library_v2)
         } else {
             backgroundImage.setColorFilter(resources.getColor(R.color.style_1, requireContext().theme))
-            //selectorImage.setImageResource(R.mipmap.selector_library)
         }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -56,23 +60,31 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
         if (user != null) {
             val email = user.email.toString()
             db.collection("Users").document(email).get().addOnSuccessListener { document ->
+                if (!isAdded) return@addOnSuccessListener
                 val storedSteamId = document.getString("SteamID")
                 if (storedSteamId != null) {
                     if (storedSteamId.matches(Regex("\\d{17}"))) {
                         getGamesForUser(storedSteamId)
                     } else {
                         resolveVanityURL(storedSteamId) { resolvedSteamId ->
+                            if (!isAdded) {
+                                // fragment ya no está añadido; abortar
+                                return@resolveVanityURL
+                            }
                             if (resolvedSteamId != null) {
                                 getGamesForUser(resolvedSteamId)
                             } else {
+                                if (!isAdded) return@resolveVanityURL
                                 Toast.makeText(requireContext(), "No se pudo resolver el SteamID.", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
                 } else {
+                    if (!isAdded) return@addOnSuccessListener
                     Toast.makeText(requireContext(), "No se encontró tu SteamID en la base de datos.", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener {
+                if (!isAdded) return@addOnFailureListener
                 Toast.makeText(requireContext(), "Error al obtener SteamID.", Toast.LENGTH_SHORT).show()
             }
         } else {
@@ -88,20 +100,21 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
-
-
-
     }
 
     private fun resolveVanityURL(vanityUrl: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
         val url = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=$steamApiKey&vanityurl=$vanityUrl"
-
         val request = Request.Builder().url(url).build()
 
-        client.newCall(request).enqueue(object : Callback {
+        val call = client.newCall(request)
+        call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("SteamAPI", "Error al resolver Vanity URL: ${e.message}")
+                if (!isAdded) {
+                    callback(null)
+                    return
+                }
                 requireActivity().runOnUiThread {
                     Toast.makeText(requireContext(), "Error al resolver el SteamID.", Toast.LENGTH_SHORT).show()
                 }
@@ -109,6 +122,10 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
             }
 
             override fun onResponse(call: Call, response: Response) {
+                if (!isAdded) {
+                    callback(null)
+                    return
+                }
                 response.use {
                     if (!response.isSuccessful) {
                         Log.e("SteamAPI", "Respuesta fallida: ${response.message}")
@@ -127,6 +144,8 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
                             Log.e("SteamAPI", "Error al procesar JSON: ${e.message}")
                             callback(null)
                         }
+                    } else {
+                        callback(null)
                     }
                 }
             }
@@ -145,21 +164,25 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
     private fun getGamesForUser(steamId: String) {
         val client = OkHttpClient()
         val url = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=$steamApiKey&steamid=$steamId&format=json&include_appinfo=true"
-
         val request = Request.Builder().url(url).build()
 
-        client.newCall(request).enqueue(object : Callback {
+        // Guardamos la llamada para poder cancelarla si el fragment se destruye
+        gamesCall = client.newCall(request)
+        gamesCall?.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("SteamAPI", "Error al obtener juegos: ${e.message}")
+                if (!isAdded) return
                 requireActivity().runOnUiThread {
                     Toast.makeText(requireContext(), "Error al obtener juegos.", Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onResponse(call: Call, response: Response) {
+                if (!isAdded) return
                 response.use {
                     if (!response.isSuccessful) {
                         Log.e("SteamAPI", "Respuesta fallida: ${response.message}")
+                        if (!isAdded) return
                         requireActivity().runOnUiThread {
                             Toast.makeText(requireContext(), "Error al obtener juegos.", Toast.LENGTH_SHORT).show()
                         }
@@ -186,6 +209,7 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
                                     newGameList.add(Game(gameId, gameName, imageUrl))
                                 }
 
+                                if (!isAdded) return
                                 requireActivity().runOnUiThread {
                                     if (newGameList.isNotEmpty()) {
                                         gameList.clear()
@@ -196,12 +220,14 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
                                     }
                                 }
                             } else {
+                                if (!isAdded) return
                                 requireActivity().runOnUiThread {
                                     Toast.makeText(requireContext(), "No se encontraron juegos.", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         } catch (e: Exception) {
                             Log.e("SteamAPI", "Error al procesar JSON: ${e.message}")
+                            if (!isAdded) return
                             requireActivity().runOnUiThread {
                                 Toast.makeText(requireContext(), "Error al procesar los datos.", Toast.LENGTH_SHORT).show()
                             }
@@ -210,5 +236,12 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
                 }
             }
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // cancelar cualquier llamada pendiente
+        gamesCall?.cancel()
+        gamesCall = null
     }
 }

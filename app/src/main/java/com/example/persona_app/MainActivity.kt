@@ -119,8 +119,6 @@ class MainActivity : AppCompatActivity() {
         }
         session()
 
-
-
     }
 
     private fun session() {
