@@ -8,34 +8,20 @@
 
     <ImageView
         android:id="@+id/background_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="628dp"
+        android:layout_width="2066dp"
+        android:layout_height="1113dp"
+        android:layout_marginBottom="428dp"
         android:rotation="180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/fondo_login_negro" />
-
-    <TextView
-        android:id="@+id/title_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/alfa_slab_one"
-        android:text=" "
-        android:textColor="#FFFFFF"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/color_cambia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="583dp"
+        android:layout_marginTop="503dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +30,8 @@
 
     <ImageView
         android:id="@+id/puntos"
-        android:layout_width="869dp"
-        android:layout_height="1026dp"
+        android:layout_width="1314dp"
+        android:layout_height="1029dp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +40,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewLogros"
-        android:layout_width="1020dp"
-        android:layout_height="548dp"
+        android:layout_width="1332dp"
+        android:layout_height="415dp"
         android:background="#000000"
         android:clipToPadding="false"
         android:padding="16dp"
@@ -64,15 +50,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-310dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewLogros"
-        app:srcCompat="@mipmap/screen_down_black" />
 
     <ImageView
         android:id="@+id/imageView21"
@@ -84,6 +61,16 @@
         app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/button_basic" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="844dp"
+        android:layout_height="308dp"
+        android:layout_marginStart="208dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/screen_down_black" />
 
     <TextView
         android:id="@+id/textView5"
@@ -99,6 +86,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/title_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/back_button"
