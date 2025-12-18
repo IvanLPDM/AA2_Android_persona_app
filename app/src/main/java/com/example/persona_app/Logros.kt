@@ -1,22 +1,31 @@
 package com.example.persona_app
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
+
 class Logros : AppCompatActivity() {
 
     private val steamApiKey = "DFDD5A1D4ABF350102931F27ECBA2F40"
 
+    //para crear variables comunes en todo el codigo??
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: Logros_Adapter
     private val logrosList = mutableListOf<Logros_item>()
+    private lateinit var titleGame: TextView
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +35,37 @@ class Logros : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = Logros_Adapter(logrosList)
         recyclerView.adapter = adapter
+        titleGame = findViewById(R.id.title_game)
+
+        val backgroundImage: ImageView = findViewById(R.id.color_cambia)
 
         //recibimos el Key_ID del juego
         val appId = intent.getIntExtra("APP_ID", -1)
         val inputSteamId = intent.getStringExtra("STEAM_ID")
 
-        Toast.makeText(
-            this,
-            "APP_ID: $appId\nSTEAM_INPUT: $inputSteamId",
-            Toast.LENGTH_LONG
-        ).show()
+
+        val backButton = findViewById<Button>(R.id.back_button)
+
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        val sharedPreferences = getSharedPreferences(
+            "AppSettings",
+            MODE_PRIVATE
+        )
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
+
+        // Aplicar tema
+        if (isDarkMode) {
+            backgroundImage.setColorFilter(
+                resources.getColor(R.color.style_2, theme)
+            )
+        } else {
+            backgroundImage.setColorFilter(
+                resources.getColor(R.color.style_1, theme)
+            )
+        }
 
         if (appId == -1 || inputSteamId.isNullOrEmpty()) {
             Toast.makeText(this, "Datos inválidos", Toast.LENGTH_SHORT).show()
@@ -54,11 +84,6 @@ class Logros : AppCompatActivity() {
                         ).show()
                         finish()
                     } else {
-                        Toast.makeText(
-                            this,
-                            "SteamID64: $resolvedSteamId",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         //Recogemos los logros, pero necesitamos la funcion de vanity para tener la direccion del jugador
                         getAchievements(appId, resolvedSteamId)
                     }
@@ -186,16 +211,19 @@ class Logros : AppCompatActivity() {
                 nuevosLogros.add(Logros_item(name, achieved))
             }
 
+            //Titulo de la acticity
+            val gameName = root
+                .getJSONObject("playerstats")
+                .optString("gameName", "Logros")
+
+            runOnUiThread {
+                titleGame.text = gameName
+            }
+
             runOnUiThread {
                 logrosList.clear()
                 logrosList.addAll(nuevosLogros)
                 adapter.update(logrosList)
-
-                Toast.makeText(
-                    this,
-                    "Logros cargados: ${logrosList.size}",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
 
         } catch (e: Exception) {
