@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 data class Game(
-    val id: String,
+    val appId: Int,
     val name: String,
     val imageUrl: String
 )
@@ -18,22 +18,19 @@ data class Game(
 class GameAdapter(
     private val context: Context,
     private var gameList: List<Game>,
-    private val onItemClicked: (String) -> Unit
+    private val onItemClicked: (Game) -> Unit
 ) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
-
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val gameImageView: ImageView = itemView.findViewById(R.id.gameImage)
         val gameTitleTextView: TextView = itemView.findViewById(R.id.gameTitle)
     }
 
-    // Infla el diseño del item para el RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_game, parent, false)
         return GameViewHolder(view)
     }
 
-    // Vincula los datos con las vistas de cada item
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = gameList[position]
 
@@ -44,13 +41,12 @@ class GameAdapter(
             .into(holder.gameImageView)
 
         holder.itemView.setOnClickListener {
-            onItemClicked(game.name) // Puedes pasar el ID del juego o nombre
+            onItemClicked(game)
         }
     }
 
     override fun getItemCount(): Int = gameList.size
 
-    // Actualizar los juegos cuando se obtienen nuevos
     fun updateGames(newGameList: List<Game>) {
         gameList = newGameList
         notifyDataSetChanged()
