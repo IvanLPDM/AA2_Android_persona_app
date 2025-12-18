@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Persona_app"
         tools:targetApi="31">
         <activity
-            android:name=".Biblioteca"
+            android:name=".Logros"
             android:exported="false" />
         <activity
             android:name=".Ajustes"
@@ -32,11 +32,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Profile"
-            android:exported="false" />
-        <activity
-            android:name=".InitActivity"
-            android:exported="false" /> <!-- SplashActivity como actividad principal -->
+            android:name=".host_fragments_activity"
+            android:exported="false"
+            />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -49,6 +47,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
