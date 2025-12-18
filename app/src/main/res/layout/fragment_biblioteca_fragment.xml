@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@mipmap/background" />
 
     <ImageView
@@ -63,18 +64,19 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/library_background_black_library"
         tools:visibility="visible" />
 
     <EditText
         android:id="@+id/inputBuscarID"
-        android:layout_width="416dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="224dp"
+        android:layout_width="415dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="228dp"
         android:hint="Ingresa tu SteamID o Vanity URL"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +84,7 @@
         android:id="@+id/imageView31"
         android:layout_width="193dp"
         android:layout_height="142dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="4dp"
         android:src="@mipmap/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,10 +97,10 @@
         android:layout_marginTop="-50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputBuscarID"
-        app:layout_constraintVertical_bias="0.389">
+        app:layout_constraintVertical_bias="0.364">
 
     </androidx.recyclerview.widget.RecyclerView>
 

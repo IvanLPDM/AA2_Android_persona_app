@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import android.content.Intent
 
 class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
 
@@ -24,6 +25,7 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
     private lateinit var gameAdapter: GameAdapter
     private val gameList = mutableListOf<Game>()
     private lateinit var sharedPreferences: SharedPreferences
+    private var resolvedSteamId: String? = null
 
     // Guardar la llamada para poder cancelarla en onDestroyView
     private var gamesCall: Call? = null
@@ -49,10 +51,8 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
         }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        gameAdapter = GameAdapter(requireContext(), gameList) { gameName ->
-            Toast.makeText(requireContext(), "Juego seleccionado: $gameName", Toast.LENGTH_SHORT).show()
-        }
-        recyclerView.adapter = gameAdapter
+
+
 
         val db = FirebaseFirestore.getInstance()
         val user = FirebaseAuth.getInstance().currentUser
@@ -62,6 +62,7 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
             db.collection("Users").document(email).get().addOnSuccessListener { document ->
                 if (!isAdded) return@addOnSuccessListener
                 val storedSteamId = document.getString("SteamID")
+                resolvedSteamId = storedSteamId
                 if (storedSteamId != null) {
                     if (storedSteamId.matches(Regex("\\d{17}"))) {
                         getGamesForUser(storedSteamId)
@@ -90,6 +91,22 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
         } else {
             Toast.makeText(requireContext(), "Usuario no autenticado.", Toast.LENGTH_SHORT).show()
         }
+
+        gameAdapter = GameAdapter(requireContext(), gameList) { game ->
+
+            val steamId = resolvedSteamId
+            if (steamId.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "SteamID no disponible", Toast.LENGTH_SHORT).show()
+                return@GameAdapter
+            }
+
+            val intent = Intent(requireContext(), Logros::class.java)
+            intent.putExtra("APP_ID", game.appId)
+            intent.putExtra("STEAM_ID", steamId)
+
+            startActivity(intent)
+        }
+        recyclerView.adapter = gameAdapter
 
         gameNameInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -206,7 +223,13 @@ class Biblioteca_fragment : Fragment(R.layout.fragment_biblioteca_fragment) {
                                     val appId = game.optInt("appid", 0)
                                     val imageUrl = "https://cdn.cloudflare.steamstatic.com/steam/apps/$appId/header.jpg"
 
-                                    newGameList.add(Game(gameId, gameName, imageUrl))
+                                    newGameList.add(
+                                        Game(
+                                            appId = appId,
+                                            name = gameName,
+                                            imageUrl = imageUrl
+                                        )
+                                    )
                                 }
 
                                 if (!isAdded) return
