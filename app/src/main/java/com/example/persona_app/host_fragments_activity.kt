@@ -39,7 +39,14 @@ class host_fragments_activity : AppCompatActivity() {
             }
         }
 
-        loadFragmentSafe(init())
+        if (savedInstanceState != null) {
+            val fragment = supportFragmentManager.getFragment(savedInstanceState, "CURRENT_FRAGMENT")
+            if (fragment != null) {
+                loadFragmentSafe(fragment)
+            }
+        } else {
+            loadFragmentSafe(init())
+        }
     }
 
     private fun loadFragmentSafe(fragment: Fragment) {
@@ -49,6 +56,14 @@ class host_fragments_activity : AppCompatActivity() {
             ft.commit()
         } else {
             ft.commitAllowingStateLoss()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.frame)
+        if (currentFragment != null) {
+            supportFragmentManager.putFragment(outState, "CURRENT_FRAGMENT", currentFragment)
         }
     }
 }
